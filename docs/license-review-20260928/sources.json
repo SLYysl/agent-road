@@ -1,0 +1,44 @@
+[
+  {
+    "file": "apache-2.0.txt",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "bytes": 11358,
+    "status": 200
+  },
+  {
+    "file": "tailscale-main-LICENSE",
+    "url": "https://raw.githubusercontent.com/tailscale/tailscale/main/LICENSE",
+    "sha256": "a7ca6186a7963a0a60740f6047760eecd7a0234e8c38bd7e1e0bbcb324bda45b",
+    "bytes": 1515,
+    "status": 200
+  },
+  {
+    "file": "tailscale-v1.98.9-LICENSE",
+    "url": "https://raw.githubusercontent.com/tailscale/tailscale/v1.98.9/LICENSE",
+    "sha256": "a7ca6186a7963a0a60740f6047760eecd7a0234e8c38bd7e1e0bbcb324bda45b",
+    "bytes": 1515,
+    "status": 200
+  },
+  {
+    "file": "node-v22.23.2-LICENSE",
+    "url": "https://raw.githubusercontent.com/nodejs/node/v22.23.2/LICENSE",
+    "sha256": "c738ae413cf561f174e34f6961f8ca458aae2369a73640dda6234c629b98bcc4",
+    "bytes": 145485,
+    "status": 200
+  },
+  {
+    "file": "powershell-v7.6.4-LICENSE",
+    "url": "https://raw.githubusercontent.com/PowerShell/PowerShell/v7.6.4/LICENSE.txt",
+    "sha256": "7c77a44a8acd9b41fdc209864a8016b3d430b5d0e09309818d5b7444336df744",
+    "bytes": 1074,
+    "status": 200
+  },
+  {
+    "file": "powershell-v7.6.4-NOTICES",
+    "url": "https://raw.githubusercontent.com/PowerShell/PowerShell/v7.6.4/ThirdPartyNotices.txt",
+    "sha256": "275443457d6f9eac61ef2367da89b1420b94f68c1cc94ed305d2591514ea88d1",
+    "bytes": 206427,
+    "status": 200
+  }
+]

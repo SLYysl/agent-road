@@ -8,7 +8,7 @@
 
 [English](README.md) · [网站与演示](https://agent-road.brahma-technologies.com/) · [给 Agent 的中文指南](docs/agent-guide-zh.md)
 
-> 免费 Alpha，目前重点验证 Mac → Windows。此仓库仍是私有开源准备版，许可证待确定，Windows 原生安装器尚未公开发布。已经接入的设备可以继续使用；新用户请按收到的内测包操作。
+> 免费 Alpha，目前重点验证 Mac → Windows。此仓库仍是私有开源准备版，自有代码采用 Apache-2.0，公开发布仍待完成检查，Windows 原生安装器尚未公开发布。已经接入的设备可以继续使用；新用户请按收到的内测包操作。
 
 ## 能做什么
 
@@ -56,3 +56,7 @@ Mac：你 + 已有 Agent → Agent Road → Tailscale + SSH → Windows：执行
 请使用仓库的 Alpha 反馈模板，写清两端系统、Agent、版本、失败阶段和脱敏错误。不要提交密钥、token、原始状态文件或完整接入命令。安全问题按 [SECURITY.md](SECURITY.md) 私下报告。
 
 [开源准备与验收边界](OPEN_SOURCE_PREPARATION.md) · [贡献说明](CONTRIBUTING.md)
+
+## 许可证
+
+自有代码与文档采用 [Apache-2.0](LICENSE)。[许可范围](LICENSE_SCOPE.md)不包含第三方软件及未确认授权的图片、字体和视频；详见[第三方核查](THIRD_PARTY_REVIEW.md)。代码许可不代表托管服务使用权或 Windows 代码签名证书。

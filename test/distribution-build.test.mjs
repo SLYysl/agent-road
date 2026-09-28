@@ -22,6 +22,7 @@ test('distribution requires tracked clean release inputs and packages the manife
   git('init', '-q');
   git('add', 'src', 'package.json', 'docs/agent-setup.md', 'docs/agent-guide-zh.md', 'tools');
   git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'fixture');
+  const legalFiles = ['LICENSE', 'NOTICE', 'LICENSE_SCOPE.md', 'THIRD_PARTY_REVIEW.md'];
   const output = join(root, 'output');
   const build = () => spawnSync(process.execPath, [join(root, 'tools/distribution/build.mjs'), output], { cwd: root, encoding: 'utf8' });
   const untracked = build();
@@ -38,10 +39,26 @@ test('distribution requires tracked clean release inputs and packages the manife
   await writeFile(installerPath, installer + '\n# uncommitted installer change\n');
   assert.notEqual(build().status, 0, 'installer template must also match the release revision');
   git('restore', 'tools/distribution/install.sh.in');
+  const missingLegal = build();
+  assert.notEqual(missingLegal.status, 0, 'legal files must not be omitted');
+  assert.match(missingLegal.stderr, /Tracked license or notice missing/);
+  for (const file of legalFiles) await writeFile(join(root, file), `fixture ${file}\n`);
+  assert.notEqual(build().status, 0, 'untracked legal files must be refused');
+  git('add', ...legalFiles);
+  assert.notEqual(build().status, 0, 'staged legal files must match HEAD');
+  git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'license fixture');
+  await writeFile(join(root, 'NOTICE'), 'dirty notice\n');
+  assert.notEqual(build().status, 0, 'dirty notice must be refused');
+  git('restore', 'NOTICE');
   const clean = build();
   assert.equal(clean.status, 0, clean.stderr);
   const manifest = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8'));
   assert.deepEqual(manifest.onboarding, status);
+  for (const file of legalFiles) {
+    assert.ok(manifest.files.includes(file));
+    const content = execFileSync('tar', ['-xOf', join(output, manifest.archive), file]).toString();
+    assert.equal(content, `fixture ${file}\n`);
+  }
   assert.ok(manifest.files.includes('docs/onboarding-status.json'));
   assert.ok(manifest.files.includes('docs/agent-guide-zh.md'));
   const chineseGuide = execFileSync('tar', ['-xOf', join(output, manifest.archive), 'docs/agent-guide-zh.md']).toString('utf8');

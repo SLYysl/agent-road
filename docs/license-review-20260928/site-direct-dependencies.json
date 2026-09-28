@@ -1,0 +1,200 @@
+[
+  {
+    "name": "@clerk/nextjs",
+    "version": "7.6.1",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/clerk/javascript.git",
+      "directory": "packages/nextjs"
+    }
+  },
+  {
+    "name": "@phosphor-icons/react",
+    "version": "2.1.10",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": "phosphor-icons/react"
+  },
+  {
+    "name": "@supabase/supabase-js",
+    "version": "2.116.0",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/supabase/supabase-js.git",
+      "directory": "packages/core/supabase-js"
+    }
+  },
+  {
+    "name": "gsap",
+    "version": "3.15.0",
+    "license": "Standard 'no charge' license: https://gsap.com/standard-license.",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/greensock/GSAP.git"
+    }
+  },
+  {
+    "name": "motion",
+    "version": "12.42.2",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": "https://github.com/motiondivision/motion"
+  },
+  {
+    "name": "next",
+    "version": "16.3.5",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": "vercel/next.js"
+  },
+  {
+    "name": "next-intl",
+    "version": "4.13.4",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/amannn/next-intl.git"
+    }
+  },
+  {
+    "name": "ogl",
+    "version": "1.0.11",
+    "license": "Unlicense",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "git+https://gordonnl@github.com/oframe/ogl.git"
+    }
+  },
+  {
+    "name": "react",
+    "version": "19.2.4",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/facebook/react.git",
+      "directory": "packages/react"
+    }
+  },
+  {
+    "name": "react-dom",
+    "version": "19.2.4",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/facebook/react.git",
+      "directory": "packages/react-dom"
+    }
+  },
+  {
+    "name": "three",
+    "version": "0.185.1",
+    "license": "MIT",
+    "kind": "dependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mrdoob/three.js"
+    }
+  },
+  {
+    "name": "@tailwindcss/postcss",
+    "version": "4.3.3",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/tailwindlabs/tailwindcss.git",
+      "directory": "packages/@tailwindcss-postcss"
+    }
+  },
+  {
+    "name": "@types/node",
+    "version": "20.19.43",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/node"
+    }
+  },
+  {
+    "name": "@types/react",
+    "version": "19.2.17",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/react"
+    }
+  },
+  {
+    "name": "@types/react-dom",
+    "version": "19.2.3",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/react-dom"
+    }
+  },
+  {
+    "name": "@types/three",
+    "version": "0.185.1",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/three"
+    }
+  },
+  {
+    "name": "eslint",
+    "version": "9.39.5",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": "eslint/eslint"
+  },
+  {
+    "name": "eslint-config-next",
+    "version": "16.3.5",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": {
+      "url": "vercel/next.js",
+      "directory": "packages/eslint-config-next"
+    }
+  },
+  {
+    "name": "tailwindcss",
+    "version": "4.3.3",
+    "license": "MIT",
+    "kind": "devDependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/tailwindlabs/tailwindcss.git",
+      "directory": "packages/tailwindcss"
+    }
+  },
+  {
+    "name": "typescript",
+    "version": "5.9.3",
+    "license": "Apache-2.0",
+    "kind": "devDependencies",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/microsoft/TypeScript.git"
+    }
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "counts": {
+    "MIT": 401,
+    "Apache-2.0": 39,
+    "LGPL-3.0-or-later": 10,
+    "Apache-2.0 AND LGPL-3.0-or-later AND MIT": 1,
+    "Apache-2.0 AND LGPL-3.0-or-later": 3,
+    "Apache-2.0 AND MIT": 11,
+    "BlueOak-1.0.0": 1,
+    "ISC": 17,
+    "Python-2.0": 1,
+    "MPL-2.0": 13,
+    "CC-BY-4.0": 1,
+    "BSD-2-Clause": 8,
+    "BSD-3-Clause": 3,
+    "Unlicense": 2,
+    "Standard 'no charge' license: https://gsap.com/standard-license.": 1,
+    "CC0-1.0": 1,
+    "0BSD": 1
+  },
+  "unknown": [],
+  "scope": "lock metadata only, not per-file clearance"
+}

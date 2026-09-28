@@ -8,7 +8,7 @@ Run a Windows command, move a file, or start a background task without moving yo
 
 [中文说明](README.zh-CN.md) · [Website & demo](https://agent-road.brahma-technologies.com/) · [Setup guide](docs/agent-setup.md) · [Command reference](docs/agent-interface.md)
 
-> **Free Alpha · Mac → Windows.** This is a private open-source preparation snapshot. Public source licensing is pending, and the native Windows installer is not publicly released. Existing enrolled devices can be used; fresh testers need the maintainer-provided bundle and its instructions.
+> **Free Alpha · Mac → Windows.** This is a private open-source preparation snapshot. Original code is licensed under Apache-2.0; public release is pending, and the native Windows installer is not publicly released. Existing enrolled devices can be used; fresh testers need the maintainer-provided bundle and its instructions.
 
 ## What can I do with it?
 
@@ -98,7 +98,7 @@ An earlier SSH service stop still has no confirmed root cause. Fresh unfamiliar 
 
 **Can it fix an offline or unbootable PC?** No. Remote work requires a functioning authorized network channel. BIOS, BitLocker pre-boot prompts, hardware failures and fully unreachable machines need local intervention.
 
-**Is it open source yet?** Not yet. This candidate is being prepared for release. The license and third-party notices must be finalized before an open-source release is declared.
+**Is it open source yet?** Not yet. This candidate is being prepared for release. Original code now uses [Apache-2.0](LICENSE); media and external components retain separate terms. [Publication gates](OPEN_SOURCE_PREPARATION.md) remain open.
 
 </details>
 
@@ -115,3 +115,7 @@ No npm dependencies are declared by the controller package. Native installer bui
 Use the Alpha feedback issue template for your OS versions, agent, candidate revision, failure stage and redacted error. Read [SECURITY.md](SECURITY.md) before reporting a security issue; never attach tokens, keys, pairing commands or raw controller state.
 
 [Engineering reference](docs/controller-reference.md) · [Third-party review](THIRD_PARTY_REVIEW.md) · [Release preparation](OPEN_SOURCE_PREPARATION.md)
+
+## License
+
+Original code and documentation: [Apache-2.0](LICENSE). See [license scope and excluded media](LICENSE_SCOPE.md) and [third-party review](THIRD_PARTY_REVIEW.md). Hosted-service access and Windows code signing are separate from this license.

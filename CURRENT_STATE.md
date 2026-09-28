@@ -1,16 +1,15 @@
-# CURRENT_STATE — Alpha tester entry and release preparation
+# CURRENT_STATE — License selection and dependency review
 Updated: 2026-09-28
-- Repository: SLYysl/agent-road; private preparation snapshot, main.
-- Completed: bilingual email request entry, bundle verification guidance, Windows changes and owner-assisted withdrawal guide.
-- User-approved public contact: syin31437@gmail.com; button opens a draft, no automatic submission or mail sent.
-- Website production: dpl_91yVvDZ5Wizfd975xze59gaqsWoj; canonical agent-road.brahma-technologies.com verified.
-- Validation: targeted ESLint, Next.js build, 15 local and 15 production HTTP routes passed.
-- Chrome checked request layout, retained lifebuoy Mac and prompt disclosure; no email delivery test.
-- Docs match website copies; Gitleaks scan zero detections, not a security audit.
-- Website task-only patch, hashes and receipts: docs/tester-entry-20260928/.
-- Earlier site/GitHub review evidence: docs/website-review-20260928/.
-- Earlier controller regression: 1,577 passed, 19 skipped, zero failures; no controller changes in this task.
-- License preparation: docs/LICENSE_RELEASE_CHECKLIST.md; license choice, ownership and third-party notices pending.
-- No Windows mutations or end-to-end uninstall test; no universal uninstall command claimed.
-- No native installer release or repository visibility change.
-- Next: settle license/rights inventory and collect fresh external two-machine trial feedback.
+- Repository: SLYysl/agent-road, main, private; licensing does not publish it.
+- Selected/applied Apache-2.0 to original code/docs under user authorization; LICENSE, NOTICE, LICENSE_SCOPE.md and package metadata added.
+- Reviewed Tailscale core vs full Windows installer vs hosted service; no blanket BSD redistribution claim.
+- Reviewed Node 22.23.2, PowerShell 7.6.4, OpenSSH, Python, Git, ripgrep and website direct/transitive package metadata.
+- Website exceptions: GSAP custom license, Cabinet Grotesk restricted font redistribution, LGPL/MPL/CC-BY dependencies require exact artifact review.
+- Lifebuoy Mac retained; image/font/video reuse rights excluded from the code license pending provenance review.
+- Controller packager now requires legal files and includes new user guides; native builder copies notices beside its executable.
+- Distribution contract test passed after reproducing missing-license packaging; npm run check passed.
+- Native Windows build not executed; no runtime/network/Windows changes, no website deploy or public installer release.
+- Evidence: docs/license-review-20260928/; private downloads under agent-road-private/license-review-20260928/.
+- Existing site production remains dpl_91yVvDZ5Wizfd975xze59gaqsWoj; email entry syin31437@gmail.com.
+- Historical pinned tester-kit archives were not regenerated or retroactively cleared.
+- Next: verify actual licensed controller archive, resolve source/media provenance and exact installer notices before public release.

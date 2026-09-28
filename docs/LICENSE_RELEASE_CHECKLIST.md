@@ -1,14 +1,15 @@
-# License release decision checklist
+# License release decision
 
-Status: preparation only, 2026-09-28. No license has been selected or granted by this document. The repository remains private.
+Selected 2026-09-28 under the user's request: **Apache-2.0 for original Agent Road code and documentation**, scoped by LICENSE_SCOPE.md. LICENSE is the unmodified official Apache text; NOTICE identifies this project. This is now applied to the private candidate, not merely a proposed license.
 
-Before adding LICENSE:
+Why: permissive reuse and a clear contributor patent grant fit a CLI intended for integration. Apache-2.0 includes notice/change obligations and does not grant trademark rights. See the [official license](https://www.apache.org/licenses/LICENSE-2.0.html). No integrated dependency found in the reviewed controller source requires selecting a copyleft project license. External tools keep their own licenses.
 
-1. Confirm the copyright holder and authority to license the exported source, documentation and original artwork. Review any contributed or copied material separately.
-2. Select the project license explicitly. MIT and Apache-2.0 are the existing candidates in OPEN_SOURCE_PREPARATION.md; use the chosen license's official text rather than a generated paraphrase.
-3. Complete THIRD_PARTY_REVIEW.md against the exact intended release archive. Distinguish prerequisites, runtime downloads and files actually redistributed. Record version, source, bundled files and required notices per component.
-4. Audit website/repository images, fonts and video separately from controller code. A project code license must not silently imply rights to all media.
-5. Add the confirmed copyright notice, LICENSE and any required third-party notices; check package metadata and README wording for consistency.
-6. Review the final archive and obtain explicit approval for public repository visibility and release assets. A licensed source release does not itself open the hosted pairing service or publish a signed Windows installer.
+Remaining public-release gates:
 
-The existing component inventory is incomplete. This checklist records the remaining decisions; it is not a completed compliance assessment or permission to redistribute a dependency.
+- Confirm provenance/authority for original source and any copied contributions; snapshot authors alone are insufficient.
+- Clear or omit artwork and other excluded media from the public artifact; retain the user's Mac lifebuoy in the current private/website presentation.
+- Regenerate an exact versioned installer/tester kit with notices and inspect all shipped payloads. Historical archives are not updated by this change.
+- Keep Tailscale official downloads and user-owned network setup separate from a hosted-service offering; do not infer full Windows installer redistribution rights from BSD.
+- Complete previously documented onboarding/security checks and obtain explicit repository-publication approval.
+
+The review covers source and identified dependencies, with unresolved artifact/media gates recorded in THIRD_PARTY_REVIEW.md. It does not certify a fully open-source end-to-end hosted stack.

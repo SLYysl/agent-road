@@ -8,9 +8,11 @@ const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const output = resolve(process.argv[2] ?? '/tmp/agent-road-distribution');
 const origin = process.argv[3] ?? 'https://agent-road.brahma-technologies.com';
 if (!/^https:\/\/[a-z0-9.-]+$/.test(origin)) throw Error('HTTPS origin required');
-// Tracked runtime plus the agent guide: no local state, tests, private captures or tools.
-const files = execFileSync('git', ['ls-files', '-z', 'src', 'windows', 'config', 'package.json', 'docs/agent-setup.md', 'docs/agent-interface.md', 'docs/agent-guide-zh.md', 'docs/windows-installer-delivery.md', 'docs/onboarding-status.json'], { cwd: repo }).toString().split('\0').filter(Boolean).sort();
+const legalFiles = ['LICENSE', 'NOTICE', 'LICENSE_SCOPE.md', 'THIRD_PARTY_REVIEW.md'];
+// Tracked runtime plus legal notices and the agent guide: no local state, tests, private captures or tools.
+const files = execFileSync('git', ['ls-files', '-z', 'src', 'windows', 'config', 'package.json', ...legalFiles, 'docs/windows-access-and-removal.md', 'docs/windows-access-and-removal.zh-CN.md', 'docs/tester-bundle.md', 'docs/tester-bundle.zh-CN.md', 'docs/agent-setup.md', 'docs/agent-interface.md', 'docs/agent-guide-zh.md', 'docs/windows-installer-delivery.md', 'docs/onboarding-status.json'], { cwd: repo }).toString().split('\0').filter(Boolean).sort();
 if (['src/cli.mjs', 'package.json', 'docs/agent-setup.md', 'docs/onboarding-status.json'].some(path => !files.includes(path))) throw Error('Tracked runtime or onboarding guide missing');
+if (legalFiles.some(path => !files.includes(path))) throw Error('Tracked license or notice missing');
 // Revision must identify the exact packaged source, including staged changes.
 const buildInputs = ['tools/distribution/build.mjs', 'tools/distribution/install.sh.in'];
 execFileSync('git', ['ls-files', '--error-unmatch', ...buildInputs], { cwd: repo, stdio: 'pipe' });

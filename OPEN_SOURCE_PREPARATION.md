@@ -1,6 +1,6 @@
 # Open-source preparation / 开源准备
 
-This repository is a **private Alpha release candidate**, not yet licensed or published as an open-source release.
+This repository is a **private Alpha release candidate**, original code is now licensed under Apache-2.0, but it has not been published as an open-source release.
 
 ## Included and excluded
 
@@ -25,8 +25,10 @@ See [third-party review inventory](THIRD_PARTY_REVIEW.md) for the initial compon
 - [x] Independent source snapshot; no private development history.
 - [x] Exclude raw experiment directory and historical packaged binaries.
 - [x] Initial Gitleaks 8.30.1 scan: no detections (text/source scan, not a security audit).
-- [ ] Choose and add an explicit LICENSE after contributor ownership and third-party notices are checked. MIT and Apache-2.0 are candidates, not granted licenses in this snapshot.
-- [ ] Inventory redistributed runtime/tool/installer dependencies and required notices; downloadable components are not automatically covered by a project license.
+- [x] Select Apache-2.0 for original code; add LICENSE, NOTICE and explicit scope.
+- [ ] Confirm contributor/source provenance and excluded media rights before whole-repository publication.
+- [x] Inventory identified source/runtime/website dependencies and separate upstream/service/asset terms.
+- [ ] Validate notices and provenance of each exact redistributed binary; historical tester archives remain pending.
 - [ ] Review remaining documentation, example identifiers, hosted URLs and broken historical evidence links; replace old README onboarding claims with one supported public path.
 - [ ] Validate hosted pairing ownership isolation, revocation, expiry, rate limits and operating scope before inviting unrestricted public use.
 - [ ] Complete fresh external two-machine trials with user-owned accounts, using the distributed prompt and package.
