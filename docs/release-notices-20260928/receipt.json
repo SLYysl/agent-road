@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "kind": "private-native-notice-review",
+  "sourceRevision": "fb9976f5ffdf2534428b96bf1e71cba16c332eba",
+  "originalBinarySha256": "4ad217c8357cf37e9010b221c0ad77e39d6fdbcde9e95d7a7b283a31c2de7dfb",
+  "sourceSha256": {
+    "Program.cs": "8103a54c10d87c93e160c811b45aa3871575f8442f27f2927d70deec7bf642e1",
+    "NativeEnrollment.cs": "acf00f716572fe183e6299892d772f6767926bdde85f920d032601daf6f198f7",
+    "NativeSystem.cs": "3f762be7a946b8d2f167de55eb2214cbcc12c525ebde3834d87f3aadd1362fa8",
+    "NativeTailscale.cs": "1ce40ae7674e1b9678a26758b304c184e81fe5e5cf7aa9e09e25dbc9bd77ae9a"
+  },
+  "originalArchiveEntries": [
+    "AgentRoadNativeSetup.exe",
+    "README.md",
+    "manifest.json"
+  ],
+  "sourceBytesMatch": true,
+  "rebuilt": false,
+  "windowsExecutionTested": false,
+  "binaryCompositionFullyVerified": false,
+  "unsigned": true,
+  "publicRelease": false,
+  "files": {
+    "AgentRoadNativeSetup.exe": "4ad217c8357cf37e9010b221c0ad77e39d6fdbcde9e95d7a7b283a31c2de7dfb",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "NOTICE": "9e5bb0cb8537648f092602fae493f454ccd425fe6fbca0a2107b20ae2757a660",
+    "LICENSE_SCOPE.md": "2a605a0b12fc9863a54c7370084c308a0431c23f2112db3a03511401d97591ab",
+    "THIRD_PARTY_REVIEW.md": "34742cdda9c5204ec355d8efb48eae6f9d790cb51f42a09ef9ff08631d60205a",
+    "tools/native-setup/Program.cs": "8103a54c10d87c93e160c811b45aa3871575f8442f27f2927d70deec7bf642e1",
+    "tools/native-setup/NativeEnrollment.cs": "acf00f716572fe183e6299892d772f6767926bdde85f920d032601daf6f198f7",
+    "tools/native-setup/NativeSystem.cs": "3f762be7a946b8d2f167de55eb2214cbcc12c525ebde3834d87f3aadd1362fa8",
+    "tools/native-setup/NativeTailscale.cs": "1ce40ae7674e1b9678a26758b304c184e81fe5e5cf7aa9e09e25dbc9bd77ae9a",
+    "tools/native-setup/Build.ps1": "ee9b406f99e5c9e4df69665ea509d1d7b0dfbb5331a90b51e63504dc634f89c3",
+    "tools/native-setup/README.md": "7acb160f86b3d10887350de711b6a61a3e1af6bc62a06673cef7fe9d74414aed",
+    "先读我-审阅包.md": "3c4f63adb797de989d62838ae5735880c833ede0799ca26bed82b19bbc8b28f4"
+  },
+  "reviewArchive": {
+    "name": "AgentRoad-build11-notices-REVIEW-ONLY.zip",
+    "sha256": "2cfde09207efeab3b4a19c15d41f8998fb01fffd280420e4536f4049b11c81dd",
+    "bytes": 68589
+  }
+}

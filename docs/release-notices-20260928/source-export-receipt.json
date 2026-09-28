@@ -1,0 +1,16 @@
+{
+  "revision": "fb9976f5ffdf2534428b96bf1e71cba16c332eba",
+  "omitted": [
+    "docs/assets/mac-lifebuoy.png"
+  ],
+  "transformed": [
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "publicRelease": false,
+  "fileCount": 374,
+  "archive": "AgentRoad-source-review-Apache-2.0.zip",
+  "sha256": "0193b6c3b40109c0e957c71a7cdfd9502ca6af7b7417fd66f35c77af81d30621",
+  "bytes": 1272377,
+  "allArchivedBytesVerified": true
+}

@@ -13,4 +13,7 @@ Updated: 2026-09-28
 - Existing site production remains dpl_91yVvDZ5Wizfd975xze59gaqsWoj; email entry syin31437@gmail.com.
 - Historical pinned tester-kit archives were not regenerated or retroactively cleared.
 - Actual clean-revision controller archive built and inspected; legal files match and no third-party binaries/media are included. Receipt: docs/license-review-20260928/controller-build.json.
-- Next: resolve source/media provenance and exact installer notices before public release.
+- Follow-up: old build11 source bytes match current C#; new private notice-complete review ZIP verified, not rebuilt or installation-tested.
+- Source-only review ZIP created at fb9976f, omitting the unresolved image file; actual repo/site lifebuoy retained.
+- Receipts: docs/release-notices-20260928/; private artifacts in agent-road-private/release-notices-20260928/.
+- Awaiting user media-source information; next verify native build/binary contents and regenerate a full matched tester kit before publication.
