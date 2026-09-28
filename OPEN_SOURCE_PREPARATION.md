@@ -16,6 +16,8 @@ Exported tracked source from development revision `335cfeee6614a6e7c2599cb1c1fe0
 - Primary validated direction is Mac controller to Windows target. Do not advertise all operating systems or recovery from any failure.
 - Remote access requires a booted, reachable system. No promise of recovery from firmware, disk encryption, hardware or offline failures.
 
+Use the [license release decision checklist](docs/LICENSE_RELEASE_CHECKLIST.md) to resolve ownership, license and media scope before publication.
+
 See [third-party review inventory](THIRD_PARTY_REVIEW.md) for the initial component checklist.
 
 ## Public release gates

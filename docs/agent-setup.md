@@ -1,5 +1,7 @@
 # Agent Road: controller setup and operating guide
 
+Before approving Windows changes, read [what changes and how to withdraw access](windows-access-and-removal.md). There is no supported one-command device uninstaller in this Alpha.
+
 Updated: 2026-09-23. Official origin: https://agent-road.brahma-technologies.com
 Audience: an AI coding agent operating a user's Mac, with explicit user authorization.
 Read this entire document before running setup. Follow the user's actual permissions;

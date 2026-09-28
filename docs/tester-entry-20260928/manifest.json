@@ -1,0 +1,57 @@
+[
+  {
+    "path": "public/docs/agent-setup.md",
+    "beforeSha256": "26f73ae8e28f862a854a31d80dc92be2445dded223ae25edca6a64ad1ee75fc2",
+    "afterSha256": "0a665c670843bd338d045f61cfcfb4ef85c84a38060256f864b3d7e051aa48b0"
+  },
+  {
+    "path": "public/docs/agent-guide-zh.md",
+    "beforeSha256": "fcec64d2b779a154518d0bc7bf64de4b3f7a33f3088dc8b3e2a9c55bf42aef8c",
+    "afterSha256": "613e2636cdee729dd1ad5d7b2490599a1842da21493e21bc06f3cbff15d79558"
+  },
+  {
+    "path": "src/app/components/Hero.tsx",
+    "beforeSha256": "ba3445c5502610edd0e08de68895047abb8a70f2abe106b3fd59d2e6afc8aaa6",
+    "afterSha256": "7576d1db01fad23ceccea64014eb6d138f849b5dbb74946dd30518e0d1edf6a8"
+  },
+  {
+    "path": "src/app/components/Footer.tsx",
+    "beforeSha256": "50506eceee7b62d2119b2e2dfa9c14bf4c80620410646c75b44454e13a1fdb1c",
+    "afterSha256": "7e6753c9daca2514bd558b501487ea7151304f2370dcaa45b42819a9903802db"
+  },
+  {
+    "path": "src/app/components/GettingStarted.tsx",
+    "beforeSha256": "0bd588b49569da84fef4fc824ad561f5b3e3f70cfc0f2226e8fa5da0a5efdcaa",
+    "afterSha256": "c9cdfcb29cceb1590d9139f6829d1f4528fad2160b613d234a059de25b41beeb"
+  },
+  {
+    "path": "src/app/components/BeginnerFAQ.tsx",
+    "beforeSha256": "0d74a37dbadad12f9d2e32ab8e5313d5084fdd80b00bdc432b9cf501ebfbebf3",
+    "afterSha256": "60ab096acc2e284942a676a53dd0ec81ccac3cc47d2215f79ade9db59f06db77"
+  },
+  {
+    "path": "src/app/components/TrialRequest.tsx",
+    "beforeSha256": null,
+    "afterSha256": "4a7b368ff0d6ca90b4d91e861b0e6eb27ad7905b6cd9d29748c6a15197450645"
+  },
+  {
+    "path": "public/docs/tester-bundle.md",
+    "beforeSha256": null,
+    "afterSha256": "ec6a340abbfd9e79780deaa14fceb79cce6727d2292e697689735d0fd351a582"
+  },
+  {
+    "path": "public/docs/tester-bundle.zh-CN.md",
+    "beforeSha256": null,
+    "afterSha256": "c4b4460c54056cb6de8b7c80d18ed6cf3d9ee733879e43586f74019bee275c18"
+  },
+  {
+    "path": "public/docs/windows-access-and-removal.md",
+    "beforeSha256": null,
+    "afterSha256": "2de74d8b609f6c889c608aae7726a4dd398d8b1e6fef2201214dfb9c80ce90e8"
+  },
+  {
+    "path": "public/docs/windows-access-and-removal.zh-CN.md",
+    "beforeSha256": null,
+    "afterSha256": "7a31642062b8a69a37790428a4eb2a4457e0daf08aa6a8cd0b63b170677e7fd0"
+  }
+]

@@ -1,17 +1,16 @@
-# CURRENT_STATE — Beginner README and homepage preparation
+# CURRENT_STATE — Alpha tester entry and release preparation
 Updated: 2026-09-28
 - Repository: SLYysl/agent-road; private preparation snapshot, main.
-- Task: beginner-facing README, website SEO/UI refinement, Jev assessment.
-- English README rewritten; Chinese README added; long engineering reference moved under docs/.
-- Earlier complete source regression: 1,577 passed, 19 skipped, zero failures.
-- Website deployed with user approval: dpl_EJetX1h47mteGnJAMQYyQinyyuTy; 11 production routes passed.
-- Jev before/after uses identical four routes and twelve questions; text-only screening, not conversion or visual evidence.
-- Website production build, targeted lint, 11 HTTP route checks and Chrome interactions passed.
-- Mobile 390 px and desktop 1440 px inspected; temporary viewport reset.
-- Site patch, before/after hashes and assessment: docs/website-review-20260928/.
-- Private raw audit: agent-road-private/readme-seo-20260928 (no credentials included in repository).
-- GitHub About updated with website/topics; README image and disclosures verified via Markdown API.
-- GitHub browser review complete: SLYysl signed in, private repo visible, mascot renders, prompt expands/copies, Chinese README link loads.
-- No Windows actions, installer release or public visibility change.
-- User visual preference: retain the classic Mac on the red/white lifebuoy; now displayed in the overview.
-- Next: finalize public release/license gates and collect unfamiliar-user feedback.
+- Completed: bilingual email request entry, bundle verification guidance, Windows changes and owner-assisted withdrawal guide.
+- User-approved public contact: syin31437@gmail.com; button opens a draft, no automatic submission or mail sent.
+- Website production: dpl_91yVvDZ5Wizfd975xze59gaqsWoj; canonical agent-road.brahma-technologies.com verified.
+- Validation: targeted ESLint, Next.js build, 15 local and 15 production HTTP routes passed.
+- Chrome checked request layout, retained lifebuoy Mac and prompt disclosure; no email delivery test.
+- Docs match website copies; Gitleaks scan zero detections, not a security audit.
+- Website task-only patch, hashes and receipts: docs/tester-entry-20260928/.
+- Earlier site/GitHub review evidence: docs/website-review-20260928/.
+- Earlier controller regression: 1,577 passed, 19 skipped, zero failures; no controller changes in this task.
+- License preparation: docs/LICENSE_RELEASE_CHECKLIST.md; license choice, ownership and third-party notices pending.
+- No Windows mutations or end-to-end uninstall test; no universal uninstall command claimed.
+- No native installer release or repository visibility change.
+- Next: settle license/rights inventory and collect fresh external two-machine trial feedback.

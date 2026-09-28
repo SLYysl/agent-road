@@ -24,10 +24,12 @@ Mac：你 + 已有 Agent → Agent Road → Tailscale + SSH → Windows：执行
                          └──────── 输出与文件 ──────────┘
 ```
 
+接入前请阅读[Windows 变更与退出说明](docs/windows-access-and-removal.zh-CN.md)：会创建本地管理员账号；“无需另注册”只指网站账号。
+
 ## 第一次使用
 
 1. 准备 Mac、有终端权限的 Agent，以及一台你有权管理的 Windows 电脑。两端联网，Windows 主人能批准管理员操作。当前重点测试 Apple Silicon Mac → Windows 11 x64。
-2. 把下面的提示词交给 Mac 上的 Agent。收到内测包就按包内版本操作；不要把网站旧版流程混进来。
+2. 先向 **syin31437@gmail.com** [申请免费内测包](docs/tester-bundle.zh-CN.md)，说明两端系统、Agent 和目标任务；维护者确认后发包。拿到包后把下面的提示词交给 Mac 上的 Agent。收到内测包就按包内版本操作；不要把网站旧版流程混进来。
 3. 由你完成浏览器账号授权和两端接入确认。账号授权不等于 Tailscale 网络已经配置好。
 4. 先验证一条输出 `Hello from Windows` 的命令，再分别验证文件往返和后台任务。
 

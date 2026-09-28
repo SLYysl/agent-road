@@ -28,11 +28,13 @@ Existing AI agent                Commands, files and background jobs
 
 The target PC does not need another AI subscription or a local model. This is a command-and-file workflow; general mouse, desktop and browser control are not guaranteed capabilities.
 
+Before setup: [Windows changes, access withdrawal and cleanup](docs/windows-access-and-removal.md). Setup creates a Windows local administrator account; a second website account is not required.
+
 ## Start here
 
 | Your situation | First step |
 | --- | --- |
-| New to Agent Road | Read the prerequisites below, then give the setup prompt to your agent. |
+| New to Agent Road | [Request a free test bundle](docs/tester-bundle.md) at **syin31437@gmail.com**, with your two OS versions, agent and one task. |
 | You received a test bundle | Follow that bundle's version, manifest and instructions. Do not mix it with website downloads. |
 | Your Windows PC is already enrolled | Keep the original controller state; use `list` and `status`, then run a small task. Do not re-pair. |
 | You want to contribute | Read [CONTRIBUTING](CONTRIBUTING.md) and the [release preparation checklist](OPEN_SOURCE_PREPARATION.md). |

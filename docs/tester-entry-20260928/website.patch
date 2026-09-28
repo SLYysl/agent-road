@@ -1,0 +1,333 @@
+--- a/public/docs/agent-setup.md
++++ b/public/docs/agent-setup.md
+@@ -1,4 +1,6 @@
+ # Agent Road: controller setup and operating guide
++
++Before approving Windows changes, read [what changes and how to withdraw access](windows-access-and-removal.md). There is no supported one-command device uninstaller in this Alpha.
+ 
+ Updated: 2026-09-23. Official origin: https://agent-road.brahma-technologies.com
+ Audience: an AI coding agent operating a user's Mac, with explicit user authorization.
+--- a/public/docs/agent-guide-zh.md
++++ b/public/docs/agent-guide-zh.md
+@@ -1,4 +1,6 @@
+ # Agent Road：给 Agent 的中文配置与使用指南
++
++批准 Windows 变更前，先阅读[接入变更、撤销访问与清理说明](windows-access-and-removal.zh-CN.md)。当前 Alpha 没有受支持的一键解绑或完整卸载命令。
+ 
+ 更新：2026-09-23。使用者：有终端访问权限、获得设备主人授权的 Agent。
+ 开始前完整阅读本文、[发布状态](./onboarding-status.json)和[命令契约](./agent-interface.md)。本文不代替实际授权，不保证某台设备在线。
+--- a/src/app/components/Hero.tsx
++++ b/src/app/components/Hero.tsx
+@@ -78,10 +78,10 @@
+         </p>
+ 
+         <div className="flex flex-wrap gap-3 mb-5">
+-          <a href="#getting-started" className="bg-accent text-black font-semibold px-6 py-3 rounded-sm hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "让我的 Agent 开始配置 →" : "Set up with my agent →"}</a>
++          <a href="#request-access" className="bg-accent text-black font-semibold px-6 py-3 rounded-sm hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "申请免费内测包 →" : "Request Alpha access →"}</a>
+           <a href="#demo" className="border border-foreground/30 px-6 py-3 rounded-sm hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "先看 1 分钟演示" : "Watch the 1-minute demo"}</a>
+         </div>
+-        <p className="text-xs text-foreground/60 mb-12">{locale === "zh" ? "双方确认接入 · 可管理 CLI 授权 · Windows 主人无需另注册 Agent Road" : "Confirm on both devices · Manage CLI access · No separate Agent Road account on Windows"}</p>
++        <p className="text-xs text-foreground/60 mb-12">{locale === "zh" ? "双方确认接入 · 可管理 CLI 授权 · Windows 会创建专用管理员账号" : "Confirm on both devices · Manage CLI access · Dedicated Windows administrator account"}</p>
+         {/* 底部 tagline */}
+         <div className="mt-10 space-y-2">
+           <div className="flex items-center gap-4 text-sm text-foreground/60">
+--- a/src/app/components/Footer.tsx
++++ b/src/app/components/Footer.tsx
+@@ -20,7 +20,7 @@
+             {t("docs")}
+           </a>
+           <a
+-            href="mailto:contact@brahma-technologies.com"
++            href="mailto:syin31437@gmail.com"
+             className="text-sm text-foreground/40 hover:text-foreground transition-colors"
+           >
+             {t("contact")}
+--- a/src/app/components/GettingStarted.tsx
++++ b/src/app/components/GettingStarted.tsx
+@@ -1,17 +1,18 @@
+ import { getLocale } from "next-intl/server";
+ import Link from "next/link";
+ import AgentSetupPrompt from "./AgentSetupPrompt";
++import TrialRequest from "./TrialRequest";
+ 
+ export default async function GettingStarted() {
+   const locale = await getLocale();
+   const zh = locale === "zh";
+   const steps = zh ? [
+-    ["把提示词交给 Mac 上的 Agent", "已有 Agent 先检查 CLI、工具和网络；由你完成浏览器登录，并批准必要变更。"],
+-    ["邀请 Windows", "先读接入指南并检查发布状态。当前 pair 使用受限旧版 Alpha；新版 Windows 原生安装器尚未发布。"],
++    ["申请内测包", "通过上方邮箱说明两端环境与一个目标任务。维护者确认后提供固定版本的包，不需要先运行配对命令。"],
++    ["让 Agent 检查与配置", "核对包内 manifest 和哈希，先检查环境。由你完成浏览器授权与 Windows 管理员确认，再按包内说明接入。"],
+     ["从一个小任务开始", "先运行输出 Hello from Windows 的只读命令，核对返回文本和退出码 0，再分别验证文件往返与后台任务。"],
+   ] : [
+-    ["Give the prompt to your Mac agent", "Your existing agent checks the CLI, tools and networking first. You approve browser sign-in and any required changes."],
+-    ["Invite your Windows PC", "Read the setup guide and release status first. The current pair command uses the limited legacy Alpha; the native Windows installer is not released."],
++    ["Request a test bundle", "Email your setup and one task. After confirming fit, the maintainer supplies a versioned bundle. Do not run pairing commands just to apply."],
++    ["Let your agent inspect and set up", "Verify the bundle manifest and hashes first. Inspect the environment, approve browser and Windows administrator steps, then follow the bundle instructions."],
+     ["Start with one small task", "Ask for a read-only command that prints Hello from Windows. Check the returned text and exit code 0, then verify file transfer and background jobs separately."],
+   ];
+   return (
+@@ -20,12 +21,11 @@
+         <p className="font-mono text-xs uppercase tracking-widest text-accent mb-5">{zh ? "开始之前" : "Before your first connection"}</p>
+         <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">{zh ? "一台 Mac，一台 Windows，一个实际任务。" : "One Mac. One Windows PC. One useful task."}</h2>
+         <p className="text-foreground/65 max-w-2xl mb-12">{zh ? "适合愿意配置网络、拥有 Windows 管理员权限的个人开发者。Alpha 免费；全新设备尚需准备步骤。" : "For individual developers with Windows administrator access who are comfortable configuring networking. Alpha is free; fresh devices still need preparation."}</p>
+-        <p className="text-sm text-foreground/75 border-l-2 border-accent pl-5 mb-8">{zh ? "新用户请使用收到的内测包：Windows 原生安装器尚未公开发布。只有网站链接时，Agent 应先说明阻塞，不假装已经可安装。" : "New testers need the maintainer-provided bundle: the native Windows installer is not publicly released. If you only have the website, your agent should explain this blocker before attempting setup."} <a href="/docs/agent-setup.md" className="underline">{zh ? "接入指南 ↗" : "Setup guide ↗"}</a></p>
+-        <div className="mb-10"><AgentSetupPrompt locale={locale} /></div>
+-        <details className="mb-10 text-sm border border-hairline p-5 rounded-sm">
+-          <summary className="cursor-pointer font-semibold">{zh ? "已经配置好 Mac？查看配对命令" : "Mac already configured? Show the pairing command"}</summary>
+-          <code className="block font-mono my-4 select-all notranslate" translate="no">agent-road pair</code>
+-          <p className="text-foreground/75">{zh ? "只在 CLI、账号授权和 Tailscale 已就绪，且你明确选择当前受限旧版 Alpha 时运行。首次用户先使用上方提示词和指南。" : "Run only with the CLI, account authorization and Tailscale ready, after explicitly choosing the current limited legacy Alpha. First-time users should start with the prompt and guide above."}</p>
++        <p className="text-sm text-foreground/75 border-l-2 border-accent pl-5 mb-8">{zh ? "新用户请使用收到的内测包：Windows 原生安装器尚未公开发布。只有网站链接时，Agent 应先说明阻塞，不假装已经可安装。" : "New testers need the maintainer-provided bundle: the native Windows installer is not publicly released. If you only have the website, your agent should explain this blocker before attempting setup."} <a href={zh ? "/docs/agent-guide-zh.md" : "/docs/agent-setup.md"} className="underline">{zh ? "接入指南 ↗" : "Setup guide ↗"}</a></p>
++        <TrialRequest />
++        <details className="mb-10 border border-hairline p-5 rounded-sm">
++          <summary className="cursor-pointer font-semibold">{zh ? "已拿到包或已接入？查看给 Agent 的提示词" : "Have a bundle or an enrolled device? Get the agent prompt"}</summary>
++          <div className="mt-5"><AgentSetupPrompt locale={locale} /></div>
+         </details>
+         <ol className="grid md:grid-cols-3 gap-8 mb-12">
+           {steps.map(([title, description], index) => <li key={title} className="border-t border-foreground/20 pt-5">
+@@ -34,6 +34,12 @@
+             <p className="text-sm leading-relaxed text-foreground/65">{description}</p>
+           </li>)}
+         </ol>
++        <div className="border border-hairline p-6 mb-8 rounded-sm">
++          <h3 className="font-semibold text-lg mb-3">{zh ? "Windows 会发生什么？怎样退出？" : "What changes on Windows? How do I leave?"}</h3>
++          <p className="text-sm text-foreground/75 leading-relaxed mb-4">{zh ? "接入会创建本地 AgentRoad 管理员账号，并配置 OpenSSH、Tailscale、SSH 授权和防火墙；具体变更取决于已有环境与包版本。“无需另注册”只指网站账号。" : "Setup creates a local AgentRoad administrator account and configures OpenSSH, Tailscale, SSH authorization and firewall rules. Exact changes depend on your environment and bundle. No second account means no second website account."}</p>
++          <p className="text-sm text-foreground/75 leading-relaxed">{zh ? "当前没有一键解绑或完整卸载命令。退出内测需要先核对任务、撤销实际访问并验证，再按原配置清理；网站登出不等于设备解绑。" : "There is no one-command device detach or complete uninstaller yet. Leaving a trial requires reviewed task shutdown, access withdrawal and verification before cleanup. Website logout is not device detach."}</p>
++          <a href={zh ? "/docs/windows-access-and-removal.zh-CN.md" : "/docs/windows-access-and-removal.md"} className="inline-block text-sm underline underline-offset-4 mt-4">{zh ? "阅读变更与退出检查单 ↗" : "Read the change and withdrawal checklist ↗"}</a>
++        </div>
+         <div className="border-l-2 border-accent pl-5 mb-8 text-sm text-foreground/65 leading-relaxed">
+           {zh ? "你可以在账号中撤销 CLI 控制端授权，阻止它发起新的接入；这不会删除设备上的既有 SSH 密钥或关闭已建立的连接。远程恢复也需要仍可用的通道。" : "You can revoke a CLI controller in your account to block new pairing requests. This does not remove existing device SSH keys or close established connections. Remote recovery also needs a working channel."}
+         </div>
+--- a/src/app/components/BeginnerFAQ.tsx
++++ b/src/app/components/BeginnerFAQ.tsx
+@@ -4,17 +4,17 @@
+   const zh = (await getLocale()) === "zh";
+   const items = zh ? [
+     ["这是另一个 AI Agent 吗？", "不是。它给已有且能使用终端的 Agent 提供远程工具。你仍然使用原来的 Agent；具体兼容性需要验证。"],
+-    ["Windows 也需要装模型或注册账号吗？", "不需要在 Windows 上另跑模型或另注册 Agent Road 账号。Mac 控制端需要浏览器账号授权；Windows 主人需要确认接入并批准管理员变更。网络配置是单独的步骤。"],
++    ["Windows 也需要装模型或注册账号吗？", "不需要在 Windows 上另跑模型或另注册网站账号，但接入会创建专用 Windows 本地管理员账号。Mac 控制端需要浏览器账号授权；Windows 主人需要确认接入并批准管理员变更。网络配置是单独的步骤。"],
+     ["它和远程桌面有什么区别？", "当前验证的核心是命令、文件和后台任务。鼠标、桌面和浏览器操作需要额外组件与可用会话，不能从“已连接”推断它们都可用。"],
+     ["现在支持哪两台电脑？", "重点测试 Apple Silicon Mac 控制 Windows 11 x64，网络使用 Tailscale。Mac 目标端、Linux 目标端及任意双机组合尚不在当前支持范围。"],
+-    ["现在能直接下载安装吗？开源了吗？", "已接入设备可以继续使用。新用户请按收到的内测包操作：Windows 原生安装器尚未公开发布。源码正在准备开源，仓库和许可证尚未公开就绪。"],
++    ["现在能直接下载安装吗？开源了吗？", "已接入设备可以继续使用。新用户请先通过首页邮箱申请内测包，人工确认后按包内说明操作：Windows 原生安装器尚未公开发布。源码正在准备开源，仓库和许可证尚未公开就绪。"],
+     ["电脑断网或开不了机也能修吗？", "不能保证。远程诊断需要仍可用的授权通道。完全不可达、BIOS、BitLocker 开机前及硬件问题，需要有人在电脑旁处理。"],
+   ] : [
+     ["Is this another AI agent?", "No. It gives an existing terminal-capable agent remote tools. You keep using your agent; compatibility must be checked for the one you use."],
+-    ["Does Windows need a model or another account?", "No second model or separate Agent Road account is needed on Windows. The Mac controller uses browser account authorization; the Windows owner confirms pairing and administrator changes. Network setup is a separate step."],
++    ["Does Windows need a model or another account?", "No second model or website account is needed on Windows, but setup creates a dedicated Windows local administrator account. The Mac controller uses browser account authorization; the Windows owner confirms pairing and administrator changes. Network setup is a separate step."],
+     ["How is this different from remote desktop?", "The validated core is commands, files and background jobs. Mouse, desktop and browser workflows need additional components and a usable session; a connected status does not prove those capabilities."],
+     ["Which computers are supported today?", "The test focus is an Apple Silicon Mac controlling Windows 11 x64 over Tailscale. Mac targets, Linux targets and arbitrary two-computer combinations are outside the current supported scope."],
+-    ["Can I install it now? Is it open source?", "Already enrolled devices can be used. New testers should follow their supplied bundle: the native Windows installer is not publicly released. Source publication and licensing are still being prepared."],
++    ["Can I install it now? Is it open source?", "Already enrolled devices can be used. New testers should request a bundle through the homepage email and follow its instructions after maintainer confirmation: the native Windows installer is not publicly released. Source publication and licensing are still being prepared."],
+     ["Can it repair a PC that is offline or cannot boot?", "Remote diagnosis needs a working authorized channel. Fully unreachable systems, BIOS, BitLocker pre-boot prompts and hardware faults require local intervention."],
+   ];
+   return <section id="faq" className="px-6 md:px-12 lg:px-24 py-20 border-t border-hairline"><div className="max-w-4xl mx-auto">
+--- /dev/null
++++ b/src/app/components/TrialRequest.tsx
+@@ -0,0 +1,22 @@
++import { getLocale } from "next-intl/server";
++
++const EMAIL = "syin31437@gmail.com";
++
++export default async function TrialRequest() {
++  const zh = (await getLocale()) === "zh";
++  const body = zh
++    ? "你好，我想申请 Agent Road 免费 Alpha 内测包。\n\nMac 系统版本与芯片：\nWindows 版本与架构：\n使用的 AI Agent：\n希望完成的一个任务：\n是否有权管理两台设备、能否在 Windows 旁确认操作：\n\n请不要在申请邮件中填写密码、token、配对码或原始设备日志。"
++    : "Hello, I would like to request the free Agent Road Alpha test bundle.\n\nMac version and chip: \nWindows version and architecture: \nAI agent used: \nOne task I want to try: \nDo I have permission to manage both devices and local access to Windows? \n\nPlease do not include passwords, tokens, pairing codes or raw device logs.";
++  const href = `mailto:${EMAIL}?subject=${encodeURIComponent("Agent Road Alpha access request")}&body=${encodeURIComponent(body)}`;
++  return <div id="request-access" className="scroll-mt-6 border border-foreground/20 bg-surface p-6 md:p-8 rounded-sm mb-10">
++    <p className="font-mono text-xs uppercase tracking-widest text-foreground/65 mb-3">{zh ? "先领取内测包" : "Get the test bundle first"}</p>
++    <h3 className="font-display text-2xl md:text-3xl font-bold mb-4">{zh ? "带一个你想做的任务来。" : "Bring one task you want to try."}</h3>
++    <p className="text-foreground/75 leading-relaxed mb-6">{zh ? "免费、小范围、人工协助的 Mac → Windows Alpha。发邮件说明两端系统、所用 Agent 和一个实际任务；维护者确认适用范围后，再提供固定版本的内测包和操作说明。" : "A free, small-scale Mac-to-Windows Alpha with maintainer assistance. Email your two OS versions, agent and one useful task. The maintainer checks fit before sharing a versioned bundle and instructions."}</p>
++    <div className="flex flex-wrap items-center gap-4 mb-4">
++      <a href={href} className="bg-accent text-black font-semibold px-5 py-3 rounded-sm hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4">{zh ? "邮件申请内测包 →" : "Request the test bundle by email →"}</a>
++      <span className="font-mono text-sm select-all break-all">{EMAIL}</span>
++    </div>
++    <p className="text-sm text-foreground/65 leading-relaxed">{zh ? "按钮只打开邮件草稿，需要你自行发送；没有邮件客户端时，可复制邮箱到网页邮箱。没有自动报名、保证名额或承诺回复时间。不要发送密码、密钥、配对码或原始日志。" : "This opens an email draft; you must send it yourself. No mail app? Copy the address into webmail. There is no automatic enrollment, guaranteed place or promised response time. Do not send credentials, pairing codes or raw logs."}</p>
++    <p className="text-sm mt-5"><a href={zh ? "/docs/tester-bundle.zh-CN.md" : "/docs/tester-bundle.md"} className="underline underline-offset-4">{zh ? "包内应有什么、如何核对版本与哈希 ↗" : "What to expect in the bundle and how to verify it ↗"}</a></p>
++  </div>;
++}
+--- /dev/null
++++ b/public/docs/tester-bundle.md
+@@ -0,0 +1,21 @@
++# Requesting an Agent Road Alpha bundle
++
++The current free trial focuses on Apple Silicon Mac → Windows 11 x64. A fresh device needs a maintainer-provided bundle; the native Windows installer is not publicly released.
++
++Email **syin31437@gmail.com** with your Mac version/chip, Windows version/architecture, existing AI agent, and one task you want to try. Confirm that you are authorized to manage both machines and can arrange local Windows access. Do not include passwords, tokens, pairing codes or raw logs.
++
++The maintainer reviews fit before sending a bundle. Sending an email does not automatically enroll a device or guarantee a place or response time. The [website request button](https://agent-road.brahma-technologies.com/#request-access) opens a draft that you send yourself.
++
++## Before running anything
++
++Ask for a pinned version, file manifest and SHA-256 checksums through the maintainer's confirmed delivery channel. A handed-out bundle should identify its installer/setup material, assets, agent prompts, prerequisites, known limitations and feedback instructions. This is a delivery checklist, not a claim that every earlier archive contains these documents.
++
++On Mac, compute the archive checksum with `shasum -a 256 /path/to/bundle.zip`. On Windows, use `Get-FileHash -Algorithm SHA256 -LiteralPath 'C:\path\to\bundle.zip'`. Compare against the separately supplied checksum. A checksum inside the same archive alone does not authenticate its publisher; checksums are not a trusted code signature.
++
++Keep the bundle's versioned instructions together. Do not mix them with older website downloads or reuse old pairing codes. Have your agent inspect the environment first, then explain required changes and obtain authorization. Read [Windows changes and withdrawal](windows-access-and-removal.md) before setup. Existing enrolled users should retain their original controller state and check status rather than re-pair.
++
++## Acceptance and feedback
++
++Verify a read-only command, file round trip and background job separately. Record the bundle version, both OS versions, agent, failing stage, expected/actual result, and a redacted error. Keep job IDs privately to reconcile uncertain operations; never automatically repeat a write with an unknown result.
++
++Send ordinary trial feedback to the same email. Review shared material for credentials, device identifiers, private paths and personal files before sending. Follow the withdrawal checklist when ending the trial; there is no universal one-command uninstall today.
+--- /dev/null
++++ b/public/docs/tester-bundle.zh-CN.md
+@@ -0,0 +1,21 @@
++# 领取 Agent Road 免费 Alpha 内测包
++
++当前重点测试 Apple Silicon Mac → Windows 11 x64。全新设备需要维护者提供内测包；Windows 原生安装器尚未公开发布。
++
++发邮件到 **syin31437@gmail.com**，说明 Mac 系统与芯片、Windows 版本与架构、已有 AI Agent，以及一个希望完成的任务。确认你有权管理两台设备，并能安排 Windows 本地确认操作。不要附密码、token、配对码或原始日志。
++
++维护者确认适用范围后再发包。发邮件不代表自动接入，不保证名额或回复时间。[网站申请按钮](https://agent-road.brahma-technologies.com/zh#request-access)只打开草稿，需要你自行发送。
++
++## 运行前核对
++
++通过维护者确认的交付渠道取得固定版本、文件清单和 SHA-256 校验值。交付包应标明安装／配置材料、素材、Agent 提示词、前提条件、已知限制和反馈方式。这是交付检查单，不代表此前每个旧压缩包已经包含这些文档。
++
++Mac 使用 `shasum -a 256 /path/to/bundle.zip` 计算校验值；Windows 使用 `Get-FileHash -Algorithm SHA256 -LiteralPath 'C:\path\to\bundle.zip'`。与另行提供的校验值比较。同一压缩包里附带的哈希本身无法证明发布者身份，哈希也不是受信任代码签名。
++
++按同一版本包内说明操作，不混用网站旧下载或旧配对码。让 Agent 先只读检查环境，再解释需要的变更并取得授权。接入前阅读 [Windows 变更与退出说明](windows-access-and-removal.zh-CN.md)。已接入用户保留原控制器状态，先查状态，不重新配对。
++
++## 验收与反馈
++
++分别验证只读命令、文件往返和后台任务。记录包版本、两端系统、Agent、出错阶段、预期／实际结果和脱敏错误。在本地保留任务 ID，以便核查结果不明的操作；不要自动重放结果未知的写操作。
++
++普通内测反馈发到同一邮箱。发送前检查凭据、设备标识、私人路径和个人文件是否已移除。退出内测按变更与退出检查单操作；目前没有通用一键卸载命令。
+--- /dev/null
++++ b/public/docs/windows-access-and-removal.md
+@@ -0,0 +1,67 @@
++# What changes on Windows, and how to leave the Alpha
++
++Updated 2026-09-28 · [中文版](windows-access-and-removal.zh-CN.md)
++
++Read this **before approving setup**. Agent Road is administrative remote access, not a sandbox. The current Alpha has **no supported one-command device detach or complete uninstaller**. Leaving a trial requires a reviewed, owner-approved removal plan and verification. This document is an operator checklist, not a tested universal uninstall procedure.
++
++## What you approve
++
++| Area | Changes the supported setup can make | What must be preserved |
++| --- | --- | --- |
++| Windows account | Creates a local `AgentRoad` account and adds it to the local Administrators group | Other users, their profiles and files; an existing account must be diagnosed, not silently taken over |
++| OpenSSH | Installs the Windows capability if needed; configures `sshd`, its startup/recovery policy and host-key-pinned access | Previous SSH configuration, service policy and other legitimate users |
++| Authorized key | Uses `C:\ProgramData\AgentRoad\ssh\authorized_keys` for the Agent Road account | Keys and evidence must remain private; identify the exact controller before changing authorization |
++| Network | Installs/configures Tailscale when required and joins the approved network | Existing Tailscale identity, policy and unrelated remote access |
++| Firewall | Adds `AgentRoad-OpenSSH-Tailscale`, scopes SSH to Tailscale, and can disable the standard broad `OpenSSH-Server-In-TCP` rule | Previous rules and legitimate services; never restore a broad inbound rule just because a trial is ending |
++| Runtime and records | Writes managed files under `C:\ProgramData\AgentRoad`, including bootstrap journals, private runtime and task records | Keep diagnostics and results until the owner agrees what can be removed |
++| Submitted work | Jobs may create scheduled tasks and files; owner-approved scripts can also change files outside Agent Road's directory | Inventory the work actually performed; uninstalling connection tools cannot undo arbitrary scripts |
++
++The exact set depends on the bundle version, existing environment and how far setup progressed. A failed or partial setup is not the same as an enrolled device. Use its journal and original instructions; do not rerun bootstrap rollback as a general uninstaller.
++
++“No separate Agent Road account on Windows” means the Windows owner does not need a second **website account**. It does not mean no Windows local account is created. Windows does not need a second AI model.
++
++## Three different ways to stop using it
++
++| Action | What it does | What it does not do |
++| --- | --- | --- |
++| Website controller revocation / `agent-road logout` | Revoke the controller's account grant for new pairing requests | Remove Windows SSH authorization, terminate existing sessions, cancel jobs or uninstall anything |
++| Device access withdrawal | Owner/maintainer removes the intended controller's effective SSH/network access and verifies it | Automatically cancel independent tasks or reverse prior task changes |
++| Cleanup / uninstall | Remove trial-owned components after access and task shutdown are verified | Safely guess which shared tools/settings existed before the trial |
++
++Deleting Mac controller state is **not** a reliable revocation method: copies of the key may still exist, and it destroys useful inventory. A lost controller must be handled from Windows or another authorized management path.
++
++## Owner-assisted withdrawal checklist
++
++1. **Arrange local access first.** Have the Windows owner at the machine, or retain another explicitly authorized management route. Do not sever the only channel and then assume remote cleanup can finish. If no independent access is available, record that blocker and arrange local help.
++2. **Freeze new work and identify scope.** Record the exact bundle/version, intended controller, Windows account/SID, target device and running jobs privately. Distinguish dedicated Agent Road components from pre-existing/shared ones. Do not copy private keys or full controller state into support messages.
++3. **Revoke the account grant.** Revoke the relevant controller in the website account UI. If the controller is available, `agent-road logout` uses that controller's existing state. Record the result; this step alone is not device withdrawal.
++4. **Reconcile work before removing its records.** For each known job ID, query status/logs. With the owner's approval, cancel only that identified running job and recheck status. Remove a scheduler definition only after its terminal state is verified. `job remove` leaves files/results. Jobs or processes started outside this mechanism need separate review; disconnecting SSH is not proof they stopped.
++5. **Remove device access with a Windows administrator.** Inspect the effective `sshd_config` and authorized key sources, match the controller's public-key fingerprint, and prepare the exact change. Remove only that controller's authorization while preserving ownership/ACLs and other users. Do not simply delete an entire key file. An owner-approved disable of the dedicated `AgentRoad` account can be part of containment, but is not proof that existing sessions ended. A shared account or ambiguous identity requires maintainer review.
++6. **Close existing access separately.** Identify and end the intended sessions/processes. Stopping a shared SSH/Tailscale service or removing the entire device from a tailnet can affect other users and requires explicit scope approval. Even after such a change, verify old sessions and independent jobs; do not infer termination from a failed new connection.
++7. **Verify before deleting.** Where safe and authorized, try a fresh connection from the revoked controller and verify refusal; also check old sessions are closed and agreed tasks have stopped. A timeout/offline PC alone is not proof the key was revoked. Record effective key/account state locally and confirm unrelated authorized access still works. If a verification cannot be performed, mark it **unknown**, not complete.
++8. **Only then review cleanup.** Use pre-install evidence to decide what was newly installed. Remove the dedicated account/profile, runtime, task files or tools only after the owner approves each category. Restore exact prior SSH/service/firewall settings only if known and still appropriate. Keep pre-existing Git, Node.js, Python, OpenSSH and Tailscale. Missing baseline means retain shared components and report partial cleanup; never replace uncertainty with a blanket delete.
++
++For suspected unauthorized active access, the owner may need local containment before the normal sequence. Disconnecting networking or stopping shared services affects other work and does not itself stop local jobs. Preserve evidence and arrange an independent recovery route.
++
++## What counts as finished?
++
++Report these separately:
++
++```text
++Bundle/version:
++Account grant revoked: verified / unknown
++New access with old controller key refused: verified / unknown
++Existing sessions closed: verified / unknown
++Known background work stopped or explicitly retained:
++Components removed / shared components retained:
++Previous settings restored / unavailable baseline:
++Unrelated access checked:
++Remaining files and reason retained:
++Owner confirmed:
++```
++
++Do not say “fully uninstalled” when only logout succeeded. No end-to-end Windows removal acceptance was performed for this documentation update.
++
++## Implementation pointers
++
++For maintainers: `windows/bootstrap-stage-one.ps1` defines the account, authorized-key path, SSH policy, service changes, firewall and transactional rollback. `tools/native-setup/` is a separate unpublished candidate path. `src/auth/client.mjs` handles account logout; `docs/agent-interface.md` describes job lifecycle semantics. Their existence does not establish a supported device-uninstall command.
+--- /dev/null
++++ b/public/docs/windows-access-and-removal.zh-CN.md
+@@ -0,0 +1,63 @@
++# Windows 会发生什么变更，以及如何退出内测
++
++更新：2026-09-28 · [English](windows-access-and-removal.md)
++
++**批准安装前先阅读。** Agent Road 提供管理员级远程操作能力，不是不可信脚本沙箱。当前 Alpha **没有受支持的一键解绑或完整卸载命令**。退出需要按本机实际状态制定计划，由设备主人批准并核验。本文是人工协助检查单，不是已经在所有环境验收的卸载程序。
++
++## 你将批准哪些变更
++
++| 位置 | 接入可能做什么 | 必须保留什么 |
++| --- | --- | --- |
++| Windows 本地账号 | 创建 `AgentRoad` 账号并加入本地 Administrators 组 | 其他用户、资料和文件；已有同名账号必须诊断，不能直接接管 |
++| OpenSSH | 必要时安装系统能力，配置 `sshd`、启动/恢复策略和固定主机密钥访问 | 原有 SSH 配置、服务策略与其他合法用户 |
++| SSH 授权 | 在 `C:\ProgramData\AgentRoad\ssh\authorized_keys` 保存该账号的授权公钥 | 凭据和证据保持私密；先辨认具体控制端，再变更授权 |
++| 网络 | 必要时安装、配置 Tailscale 并加入批准的网络 | 原有网络身份、策略与其他远程访问 |
++| 防火墙 | 添加 `AgentRoad-OpenSSH-Tailscale`，将 SSH 限定在 Tailscale；可能关闭系统宽泛的 `OpenSSH-Server-In-TCP` 规则 | 既有规则和合法服务；退出时不能顺手打开宽泛入站规则 |
++| 运行时与记录 | 在 `C:\ProgramData\AgentRoad` 下保存接入 journal、私有运行时和任务记录 | 先保留诊断与结果，再由主人决定清理范围 |
++| 你提交的任务 | 后台任务可创建计划任务和文件；获准执行的脚本还能修改目录外内容 | 盘点实际做过的工作；卸载连接工具不会自动撤销任意脚本的影响 |
++
++实际变更取决于内测包版本、已有环境和安装阶段。安装失败或中断不等于已接入；应按对应 journal 和原说明诊断，不能把 bootstrap 回滚当成通用卸载器。
++
++“Windows 主人无需另注册 Agent Road”说的是无需第二个**网站账号**，不是不会创建 Windows 本地账号。Windows 不需要再跑一个 AI 模型。
++
++## 三件事要分开
++
++| 操作 | 能做到什么 | 不会做到什么 |
++| --- | --- | --- |
++| 网站撤销控制端 / `agent-road logout` | 撤销该控制端发起新配对的账号授权 | 不删除 Windows SSH 授权，不关闭已有会话，不取消任务，不卸载 |
++| 撤销设备访问 | 主人或维护者移除指定控制端实际使用的 SSH/网络权限，并验证 | 不自动停止独立任务，也不回滚过去的脚本变更 |
++| 清理 / 卸载 | 在访问和任务已停止后，移除确认属于本次内测的内容 | 不能猜测共享工具和系统设置的安装前状态 |
++
++删除 Mac 上的控制器状态**不等于撤销**：密钥可能已有副本，还会丢失必要的盘点记录。Mac 已丢失时，需要在 Windows 本地或通过其他获准的管理路径处理。
++
++## 由 Windows 主人与维护者配合退出
++
++1. **先安排独立入口。** 主人在 Windows 旁边，或保留另一个明确授权的管理通道。不要先断开唯一连接，再期待远程清理完成。没有独立入口时，先记录阻塞并安排本地协助。
++2. **停止发起新工作并确认范围。** 私下记录内测包版本、目标设备、控制端、Windows 账号/SID 和运行中的任务 ID。区分专用与共享组件，不把私钥或完整状态文件发到支持消息里。
++3. **撤销网站控制端授权。** 在账号页面撤销对应控制端；Mac 仍可用时，使用它原来的控制器状态执行 `agent-road logout`。核对结果，但不能据此宣布设备已经断开。
++4. **先核对任务，再删记录。** 对已知任务 ID 查询状态和日志。主人同意后仅取消明确识别的运行中任务，再检查终态。确认终止后才移除计划任务定义；`job remove` 会保留文件和结果。其他方式启动的进程另行核对，SSH 断开不代表任务停止。
++5. **由 Windows 管理员撤销实际访问。** 检查生效的 `sshd_config` 和授权公钥来源，匹配目标控制端的公钥指纹，先列明具体改动。仅移除目标控制端的授权，保留 ACL、所有权及其他用户；不要整份删除公钥文件。主人批准后，可将禁用专用 `AgentRoad` 账号作为隔离的一部分，但这不证明已建立会话终止。账号共享或身份不明时停下核查。
++6. **单独关闭已有会话。** 辨认并结束目标会话/进程。停止共享 SSH/Tailscale 服务，或把整台设备移出 tailnet，可能影响其他使用者，需明确批准影响范围。变更后仍应核对旧会话和独立后台任务，不能只看新连接失败。
++7. **先验证，再删除。** 在安全且获准的情况下，从旧控制端尝试一次全新连接并确认拒绝，同时确认已有会话关闭、约定任务已停止。仅超时或设备离线不是密钥已撤销的证据；还要在本地核对生效账号/公钥状态，并检查其他合法访问未受损。不能验证的项目写“未知”，不能写完成。
++8. **最后决定清理范围。** 根据安装前证据，逐项批准删除本次新增的专用账号/用户目录、运行时、任务文件和工具。只有原状态明确且仍然适用时，才恢复 SSH、服务或防火墙设置。保留原有 Git、Node.js、Python、OpenSSH、Tailscale。没有基线就保留共享组件、报告部分清理，不使用一条命令整目录删除。
++
++若怀疑有人正在进行未授权访问，应先由主人在本地进行适当隔离。断网或停用共享服务会影响其他工作，也不会自动停止本地任务；保留证据并安排独立恢复入口。
++
++## 怎样报告完成
++
++```text
++内测包与版本：
++账号授权撤销：已验证 / 未知
++旧控制端新建连接被拒绝：已验证 / 未知
++已有会话关闭：已验证 / 未知
++已知后台任务：已停止 / 经主人同意保留 / 未知
++删除的组件与保留的共享组件：
++已恢复的设置 / 缺失的基线：
++其他合法访问检查：
++剩余文件与保留原因：
++主人确认：
++```
++
++不能把“logout 成功”写成“完整卸载成功”。本次仅补文档，**没有执行 Windows 退出/卸载闭环验收**。
++
++维护者依据：`windows/bootstrap-stage-one.ps1`（账号、公钥、服务、防火墙、事务回滚）、`tools/native-setup/`（未发布的独立原生候选）、`src/auth/client.mjs`（账号退出）及 `docs/agent-interface.md`（任务生命周期）。这些实现不代表已有一键解绑命令。

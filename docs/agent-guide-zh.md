@@ -1,5 +1,7 @@
 # Agent Road：给 Agent 的中文配置与使用指南
 
+批准 Windows 变更前，先阅读[接入变更、撤销访问与清理说明](windows-access-and-removal.zh-CN.md)。当前 Alpha 没有受支持的一键解绑或完整卸载命令。
+
 更新：2026-09-23。使用者：有终端访问权限、获得设备主人授权的 Agent。
 开始前完整阅读本文、[发布状态](./onboarding-status.json)和[命令契约](./agent-interface.md)。本文不代替实际授权，不保证某台设备在线。
 
