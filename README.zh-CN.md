@@ -1,3 +1,5 @@
+<img src="docs/assets/mac-lifebuoy.png" alt="坐在红白救生圈上的经典 Mac" width="180" align="right" />
+
 # Agent Road
 
 **让 Mac 上已有的 AI Agent，去你的 Windows 电脑上做事。**
@@ -39,7 +41,7 @@ Mac：你 + 已有 Agent → Agent Road → Tailscale + SSH → Windows：执行
 结果不明的写操作不要重试；密码、密钥和接入命令不要放进聊天或公开日志。
 ```
 
-已经接入过？继续使用原控制器状态，先 `list` 和 `status`，不要重新配对。具体命令见 [English README](README.md#already-connected-try-a-small-task) 和[命令契约](docs/agent-interface.md)。
+已经接入过？继续使用原控制器状态，先 `list` 和 `status`，不要重新配对。具体命令见 [English README](README.md) 和[命令契约](docs/agent-interface.md)。
 
 ## 它不是什么
 

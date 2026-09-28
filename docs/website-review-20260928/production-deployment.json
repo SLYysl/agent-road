@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-28",
+  "deploymentId": "dpl_EJetX1h47mteGnJAMQYyQinyyuTy",
+  "deploymentUrl": "https://agent-road-site-ijukoe1vr-syin31437-9598s-projects.vercel.app",
+  "productionUrl": "https://agent-road.brahma-technologies.com/",
+  "previousDeploymentUrl": "https://agent-road-site-38h6knalp-syin31437-9598s-projects.vercel.app",
+  "status": "READY",
+  "productionRouteChecks": 11,
+  "controllerManifestMatchesLocal": true,
+  "lifebuoyAssetHttp": 200,
+  "repositoryVisibility": "private",
+  "githubBrowserReview": "awaiting SLYysl sign-in; Markdown rendering verified via GitHub API"
+}

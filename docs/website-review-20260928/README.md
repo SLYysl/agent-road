@@ -1,6 +1,6 @@
 # Homepage, SEO and first-time-user review — 2026-09-28
 
-Status: README changes prepared for the private SLYysl repository; website changes applied and verified locally, **not deployed**. The source repository remains private and licensing remains pending.
+Status: user authorized production deployment on 2026-09-28. The reviewed website is now deployed and 11 production routes passed; see `production-deployment.json`. README changes are in the private SLYysl repository. The source repository remains private and licensing remains pending.
 
 ## Findings and decisions
 

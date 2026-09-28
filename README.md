@@ -1,3 +1,5 @@
+<img src="docs/assets/mac-lifebuoy.png" alt="A classic Mac on a red and white lifebuoy" width="180" align="right" />
+
 # Agent Road
 
 **Let the AI agent on your Mac work on your Windows PC.**
@@ -37,7 +39,8 @@ The target PC does not need another AI subscription or a local model. This is a 
 
 **You need:** a Mac with an agent that can run terminal commands; a Windows PC whose owner can approve administrator changes; internet access on both machines; and Tailscale networking. Account authorization and network setup are separate steps. The current test focus is Apple Silicon Mac → Windows 11 x64; other targets are not claimed as supported.
 
-### Give this to your agent
+<details>
+<summary><strong>Copy a setup prompt for your agent</strong></summary>
 
 ```text
 Help me use Agent Road from this Mac with a Windows PC I own or am authorized to manage.
@@ -54,7 +57,10 @@ Keep credentials and pairing commands out of chat and logs I might share.
 
 For a Chinese prompt and detailed usage, see [给 Agent 的中文指南](docs/agent-guide-zh.md).
 
-### Already connected? Try a small task
+</details>
+
+<details>
+<summary><strong>Already connected? Try a small task</strong></summary>
 
 From this checkout on your Mac, with Node.js 22 or newer and the **original controller state**:
 
@@ -71,13 +77,16 @@ node src/cli.mjs exec <device-id> --script /absolute/path/hello.ps1
 
 Success means the remote output contains `Hello from Windows` and the script exits with code 0. This proves that command worked; file transfer, runtime readiness and reboot recovery require their own checks. Device IDs and command results are private—redact them in feedback.
 
+</details>
+
 ## What has been tested?
 
 Internal physical-PC and VM trials cover commands, Unicode file round trips and durable jobs. Claude and DeepSeek independently used the existing controller to complete task checks. One 24-hour observation recorded 95 successful scheduled samples plus a successful closing probe; this is sampled evidence, not an uptime guarantee.
 
 An earlier SSH service stop still has no confirmed root cause. Fresh unfamiliar machines, signed installer delivery and general reboot recovery are not fully accepted. See [evidence and publication limits](OPEN_SOURCE_PREPARATION.md).
 
-## Questions people ask
+<details>
+<summary><strong>Questions people ask</strong></summary>
 
 **Does this replace Claude Code, Codex or another agent?** No. It provides tools for an existing agent with terminal access. Compatibility must be checked for the agent you use.
 
@@ -88,6 +97,8 @@ An earlier SSH service stop still has no confirmed root cause. Fresh unfamiliar 
 **Can it fix an offline or unbootable PC?** No. Remote work requires a functioning authorized network channel. BIOS, BitLocker pre-boot prompts, hardware failures and fully unreachable machines need local intervention.
 
 **Is it open source yet?** Not yet. This candidate is being prepared for release. The license and third-party notices must be finalized before an open-source release is declared.
+
+</details>
 
 ## Developers and feedback
 
