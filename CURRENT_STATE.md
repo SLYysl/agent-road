@@ -12,4 +12,5 @@ Updated: 2026-09-28
 - Evidence: docs/license-review-20260928/; private downloads under agent-road-private/license-review-20260928/.
 - Existing site production remains dpl_91yVvDZ5Wizfd975xze59gaqsWoj; email entry syin31437@gmail.com.
 - Historical pinned tester-kit archives were not regenerated or retroactively cleared.
-- Next: verify actual licensed controller archive, resolve source/media provenance and exact installer notices before public release.
+- Actual clean-revision controller archive built and inspected; legal files match and no third-party binaries/media are included. Receipt: docs/license-review-20260928/controller-build.json.
+- Next: resolve source/media provenance and exact installer notices before public release.
