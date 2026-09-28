@@ -1,0 +1,114 @@
+{
+  "model": "jev-1.13.0",
+  "method": "Text-only Noul screening; same questions and four routes before/after; no screenshot inputs or user conversion experiment.",
+  "routes": [
+    "/",
+    "/zh",
+    "/sitemap.xml",
+    "/auth/signin"
+  ],
+  "before": {
+    "product_clear": {
+      "type": "noul",
+      "noul": 0.94
+    },
+    "first_action_clear": {
+      "type": "noul",
+      "noul": 0.56
+    },
+    "two_machine_roles_clear": {
+      "type": "noul",
+      "noul": 0.94
+    },
+    "prerequisites_clear": {
+      "type": "noul",
+      "noul": 0.92
+    },
+    "use_cases_concrete": {
+      "type": "noul",
+      "noul": 0.95
+    },
+    "first_success_defined": {
+      "type": "noul",
+      "noul": 0.92
+    },
+    "release_honest": {
+      "type": "noul",
+      "noul": 0.95
+    },
+    "claims_consistent": {
+      "type": "noul",
+      "noul": 0.81
+    },
+    "faq_answers_objections": {
+      "type": "noul",
+      "noul": 0.28
+    },
+    "seo_basics": {
+      "type": "noul",
+      "noul": 0.95
+    },
+    "signin_noindex": {
+      "type": "noul",
+      "noul": 0.98
+    },
+    "visual_appeal_evaluable": {
+      "type": "noul",
+      "noul": 0.02
+    }
+  },
+  "after": {
+    "product_clear": {
+      "type": "noul",
+      "noul": 0.98
+    },
+    "first_action_clear": {
+      "type": "noul",
+      "noul": 0.83
+    },
+    "two_machine_roles_clear": {
+      "type": "noul",
+      "noul": 0.96
+    },
+    "prerequisites_clear": {
+      "type": "noul",
+      "noul": 0.96
+    },
+    "use_cases_concrete": {
+      "type": "noul",
+      "noul": 0.96
+    },
+    "first_success_defined": {
+      "type": "noul",
+      "noul": 0.96
+    },
+    "release_honest": {
+      "type": "noul",
+      "noul": 0.97
+    },
+    "claims_consistent": {
+      "type": "noul",
+      "noul": 0.82
+    },
+    "faq_answers_objections": {
+      "type": "noul",
+      "noul": 0.95
+    },
+    "seo_basics": {
+      "type": "noul",
+      "noul": 0.95
+    },
+    "signin_noindex": {
+      "type": "noul",
+      "noul": 0.98
+    },
+    "visual_appeal_evaluable": {
+      "type": "noul",
+      "noul": 0.02
+    }
+  },
+  "requests": {
+    "beforeSeconds": 0.31,
+    "afterSeconds": 0.33
+  }
+}

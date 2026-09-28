@@ -1,11 +1,14 @@
-# CURRENT_STATE — Open-source preparation
+# CURRENT_STATE — Beginner README and homepage preparation
 Updated: 2026-09-28
-- Task: prepare a private SLYysl/agent-road candidate for later open-source release.
-- Source snapshot: 335cfeee6614a6e7c2599cb1c1fe00cf2ce61787; independent history.
-- Original development checkout and origin unchanged.
-- Excluded experiments/ (private operational evidence, screenshots and old bundles).
-- Replaced personal Mac home paths in documentation with example paths.
-- No controller state, credentials or prior git history imported.
-- No public release, installer upload, npm publication or service deployment authorized here.
-- Publication gates and evidence boundaries: OPEN_SOURCE_PREPARATION.md.
-- Next: resolve license/component inventory, documentation links and fresh external tester acceptance before public release.
+- Repository: SLYysl/agent-road; private preparation snapshot, main.
+- Task: beginner-facing README, website SEO/UI refinement, Jev assessment.
+- English README rewritten; Chinese README added; long engineering reference moved under docs/.
+- Earlier complete source regression: 1,577 passed, 19 skipped, zero failures.
+- Website changed locally; existing dirty baseline preserved, no site deployment.
+- Jev before/after uses identical four routes and twelve questions; text-only screening, not conversion or visual evidence.
+- Website production build, targeted lint, 11 HTTP route checks and Chrome interactions passed.
+- Mobile 390 px and desktop 1440 px inspected; temporary viewport reset.
+- Site patch, before/after hashes and assessment: docs/website-review-20260928/.
+- Private raw audit: agent-road-private/readme-seo-20260928 (no credentials included in repository).
+- No Windows actions, installer release, account changes or public visibility change.
+- Next: finalize public release/license gates, select deployable site baseline and collect unfamiliar-user feedback.

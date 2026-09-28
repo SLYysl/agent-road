@@ -1,0 +1,906 @@
+--- a/src/app/[locale]/page.tsx
++++ b/src/app/[locale]/page.tsx
+@@ -6,11 +6,11 @@
+   const { locale } = await params;
+   const zh = locale === "zh";
+   const title = zh
+-    ? "Agent Road — 从 Mac 连接 Windows，运行远程 AI 任务"
+-    : "Agent Road — Connect Mac to Windows for Remote AI Tasks";
++    ? "Agent Road — 让 Mac 上的 AI Agent 操作 Windows"
++    : "Agent Road — Run Windows Tasks with Your Mac AI Agent";
+   const description = zh
+-    ? "从已配置的 Mac 发起邀请，Windows 粘贴短命令，双方确认后连接。通过 Agent Road 运行远程命令、传输文件并管理 CLI 控制端授权。"
+-    : "Invite a Windows PC from a configured Mac using a short join command. Confirm on both devices, run remote commands, transfer files and manage CLI authorization.";
++    ? "让 Mac 上已有的 AI Agent 在 Windows 上执行命令、传输文件和运行后台任务。了解双机分工、接入步骤与免费 Alpha 的当前限制。"
++    : "Use your existing Mac AI agent to run Windows commands, transfer files and manage background jobs. See how setup works and what the free Alpha supports.";
+   const url = zh ? "/zh" : "/";
+   const images = [{ url: "/videos/agent-road-web-en-poster.jpg", alt: "Agent Road demonstration" }];
+   return {
+@@ -23,12 +23,12 @@
+ }
+ 
+ import GettingStarted from "../components/GettingStarted";
++import Overview from "../components/Overview";
++import BeginnerFAQ from "../components/BeginnerFAQ";
++import Footer from "../components/Footer";
+ import Hero from "../components/Hero";
+ import PromoVideo from "../components/PromoVideo";
+-import InkSection from "../components/InkSection";
+ import Scenarios from "../components/Scenarios";
+-import TraumaTeam from "../components/TraumaTeam";
+-import VitalSigns from "../components/VitalSigns";
+ import SecuritySection from "../components/SecuritySection";
+ import VerifiedSection from "../components/VerifiedSection";
+ import GoogleTranslate from "../components/GoogleTranslate";
+@@ -37,14 +37,14 @@
+   return (
+     <main className="flex-1">
+       <Hero />
++      <Overview />
+       <PromoVideo />
+       <GettingStarted />
+-      <InkSection />
+       <Scenarios />
+-      <TraumaTeam />
+-      <VitalSigns />
+       <SecuritySection />
+       <VerifiedSection />
++      <BeginnerFAQ />
++      <Footer />
+       <GoogleTranslate />
+     </main>
+   );
+--- a/src/app/[locale]/pricing/page.tsx
++++ b/src/app/[locale]/pricing/page.tsx
+@@ -1,5 +1,6 @@
+ import type { Metadata } from "next";
+ import Link from "next/link";
++import { getLocale } from "next-intl/server";
+ 
+ // Keep the alpha placeholder out of search until it has substantive content.
+ export async function generateMetadata({ params }: {
+@@ -13,30 +14,30 @@
+   };
+ }
+ 
+-export default function PricingPage() {
++export default async function PricingPage() {
++  const zh = (await getLocale()) === "zh";
+   return (
+     <main className="flex-1 flex items-center justify-center px-6">
+       <div className="max-w-2xl mx-auto text-center">
+         <div className="text-xs font-mono uppercase tracking-widest text-foreground/40 mb-4">
+-          Pricing
++          Alpha
+         </div>
+         <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight mb-8">
+-          Free During Alpha
++          {zh ? "免费 Alpha" : "Free Alpha"}
+         </h1>
+         <p className="text-lg text-foreground/60 mb-12 leading-relaxed">
+-          Agent Road is in active development. The alpha is free. Pricing will
+-          be announced when we reach beta.
++          {zh ? "当前重点验证 Mac → Windows。新用户请按收到的内测包操作；Windows 原生安装器尚未公开发布。" : "Currently focused on Mac to Windows. New testers should follow their supplied bundle; the native Windows installer is not publicly released."}
+         </p>
+         <div className="inline-flex items-center gap-2 px-4 py-2 border border-foreground/20 rounded-sm text-sm font-mono text-foreground/60">
+           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+-          <span>Alpha — No payment required</span>
++          <span>{zh ? "Alpha · 无需付款" : "Alpha · No payment required"}</span>
+         </div>
+         <div className="mt-16">
+           <Link
+-            href="/"
++            href={zh ? "/zh" : "/"}
+             className="text-sm text-foreground/40 hover:text-foreground transition-colors"
+           >
+-            ← Back to home
++            {zh ? "← 返回首页" : "← Back to home"}
+           </Link>
+         </div>
+       </div>
+--- /dev/null
++++ b/src/app/components/BeginnerFAQ.tsx
+@@ -0,0 +1,24 @@
++import { getLocale } from "next-intl/server";
++
++export default async function BeginnerFAQ() {
++  const zh = (await getLocale()) === "zh";
++  const items = zh ? [
++    ["这是另一个 AI Agent 吗？", "不是。它给已有且能使用终端的 Agent 提供远程工具。你仍然使用原来的 Agent；具体兼容性需要验证。"],
++    ["Windows 也需要装模型或注册账号吗？", "不需要在 Windows 上另跑模型或另注册 Agent Road 账号。Mac 控制端需要浏览器账号授权；Windows 主人需要确认接入并批准管理员变更。网络配置是单独的步骤。"],
++    ["它和远程桌面有什么区别？", "当前验证的核心是命令、文件和后台任务。鼠标、桌面和浏览器操作需要额外组件与可用会话，不能从“已连接”推断它们都可用。"],
++    ["现在支持哪两台电脑？", "重点测试 Apple Silicon Mac 控制 Windows 11 x64，网络使用 Tailscale。Mac 目标端、Linux 目标端及任意双机组合尚不在当前支持范围。"],
++    ["现在能直接下载安装吗？开源了吗？", "已接入设备可以继续使用。新用户请按收到的内测包操作：Windows 原生安装器尚未公开发布。源码正在准备开源，仓库和许可证尚未公开就绪。"],
++    ["电脑断网或开不了机也能修吗？", "不能保证。远程诊断需要仍可用的授权通道。完全不可达、BIOS、BitLocker 开机前及硬件问题，需要有人在电脑旁处理。"],
++  ] : [
++    ["Is this another AI agent?", "No. It gives an existing terminal-capable agent remote tools. You keep using your agent; compatibility must be checked for the one you use."],
++    ["Does Windows need a model or another account?", "No second model or separate Agent Road account is needed on Windows. The Mac controller uses browser account authorization; the Windows owner confirms pairing and administrator changes. Network setup is a separate step."],
++    ["How is this different from remote desktop?", "The validated core is commands, files and background jobs. Mouse, desktop and browser workflows need additional components and a usable session; a connected status does not prove those capabilities."],
++    ["Which computers are supported today?", "The test focus is an Apple Silicon Mac controlling Windows 11 x64 over Tailscale. Mac targets, Linux targets and arbitrary two-computer combinations are outside the current supported scope."],
++    ["Can I install it now? Is it open source?", "Already enrolled devices can be used. New testers should follow their supplied bundle: the native Windows installer is not publicly released. Source publication and licensing are still being prepared."],
++    ["Can it repair a PC that is offline or cannot boot?", "Remote diagnosis needs a working authorized channel. Fully unreachable systems, BIOS, BitLocker pre-boot prompts and hardware faults require local intervention."],
++  ];
++  return <section id="faq" className="px-6 md:px-12 lg:px-24 py-20 border-t border-hairline"><div className="max-w-4xl mx-auto">
++    <h2 className="font-display text-3xl md:text-5xl font-bold mb-10">{zh ? "第一次使用，你可能想问" : "Before you try it"}</h2>
++    {items.map(([q,a]) => <details key={q} className="group border-b border-hairline py-5"><summary className="cursor-pointer font-semibold text-lg focus-visible:outline-2 focus-visible:outline-offset-4">{q}</summary><p className="text-foreground/75 leading-relaxed mt-4 max-w-3xl">{a}</p></details>)}
++  </div></section>;
++}
+--- a/src/app/components/Footer.tsx
++++ b/src/app/components/Footer.tsx
+@@ -1,8 +1,9 @@
+-import { useTranslations } from "next-intl";
++import { useLocale, useTranslations } from "next-intl";
+ import Link from "next/link";
+ 
+ export default function Footer() {
+   const t = useTranslations("footer");
++  const zh = useLocale() === "zh";
+ 
+   return (
+     <footer className="border-t border-hairline py-12 px-6 md:px-12 lg:px-24">
+@@ -10,17 +11,10 @@
+         <div className="text-sm font-mono text-foreground/40">
+           {t("project")}
+         </div>
+-        <div className="flex items-center gap-8">
++        <div className="flex flex-wrap justify-center items-center gap-5">
++          <span className="text-sm text-foreground/65">{zh ? "开源准备中" : "Open-source release in preparation"}</span>
+           <a
+-            href="https://github.com/syin31437-collab/agent-road"
+-            target="_blank"
+-            rel="noopener noreferrer"
+-            className="text-sm text-foreground/40 hover:text-foreground transition-colors"
+-          >
+-            {t("github")}
+-          </a>
+-          <a
+-            href="#docs"
++            href={zh ? "/docs/agent-guide-zh.md" : "/docs/agent-setup.md"}
+             className="text-sm text-foreground/40 hover:text-foreground transition-colors"
+           >
+             {t("docs")}
+@@ -33,11 +27,11 @@
+           </a>
+         </div>
+         <div className="flex items-center gap-2 text-xs font-mono text-foreground/30">
+-          <Link href="/en" locale="en" className="hover:text-foreground transition-colors">
++          <Link href="/" className="hover:text-foreground transition-colors">
+             EN
+           </Link>
+           <span>/</span>
+-          <Link href="/zh" locale="zh" className="hover:text-foreground transition-colors">
++          <Link href="/zh" className="hover:text-foreground transition-colors">
+             中文
+           </Link>
+         </div>
+--- a/src/app/components/GettingStarted.tsx
++++ b/src/app/components/GettingStarted.tsx
+@@ -1,17 +1,18 @@
+ import { getLocale } from "next-intl/server";
+ import Link from "next/link";
++import AgentSetupPrompt from "./AgentSetupPrompt";
+ 
+ export default async function GettingStarted() {
+   const locale = await getLocale();
+   const zh = locale === "zh";
+   const steps = zh ? [
+-    ["准备控制端", "Mac 需要已安装的 Agent Road CLI 和 Tailscale 网络配置。用 agent-road login 登录并授权控制端。"],
++    ["把提示词交给 Mac 上的 Agent", "已有 Agent 先检查 CLI、工具和网络；由你完成浏览器登录，并批准必要变更。"],
+     ["邀请 Windows", "先读接入指南并检查发布状态。当前 pair 使用受限旧版 Alpha；新版 Windows 原生安装器尚未发布。"],
+-    ["从一个小任务开始", "先运行命令或传输文件，再检查桌面和浏览器能力。每项能力以设备检查结果为准。"],
++    ["从一个小任务开始", "先运行输出 Hello from Windows 的只读命令，核对返回文本和退出码 0，再分别验证文件往返与后台任务。"],
+   ] : [
+-    ["Prepare your Mac", "Start with the Agent Road CLI installed and Tailscale networking configured. Use agent-road login to authorize your controller."],
++    ["Give the prompt to your Mac agent", "Your existing agent checks the CLI, tools and networking first. You approve browser sign-in and any required changes."],
+     ["Invite your Windows PC", "Read the setup guide and release status first. The current pair command uses the limited legacy Alpha; the native Windows installer is not released."],
+-    ["Start with one small task", "Run a command or transfer a file, then check desktop and browser access. Use the device checks to see what is available."],
++    ["Start with one small task", "Ask for a read-only command that prints Hello from Windows. Check the returned text and exit code 0, then verify file transfer and background jobs separately."],
+   ];
+   return (
+     <section id="getting-started" className="px-6 md:px-12 lg:px-24 py-20 border-y border-hairline scroll-mt-6">
+@@ -19,7 +20,13 @@
+         <p className="font-mono text-xs uppercase tracking-widest text-accent mb-5">{zh ? "开始之前" : "Before your first connection"}</p>
+         <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">{zh ? "一台 Mac，一台 Windows，一个实际任务。" : "One Mac. One Windows PC. One useful task."}</h2>
+         <p className="text-foreground/65 max-w-2xl mb-12">{zh ? "适合愿意配置网络、拥有 Windows 管理员权限的个人开发者。Alpha 免费；全新设备尚需准备步骤。" : "For individual developers with Windows administrator access who are comfortable configuring networking. Alpha is free; fresh devices still need preparation."}</p>
+-        <p className="text-sm text-foreground/65 mb-8">{zh ? "Windows 测试曾遇到 Defender 拦截。请保留防护设置；首次接入前查看当前限制。" : "Some Windows trials encountered Defender blocks. Keep protection enabled and review the current limitations before pairing."} <a href="/docs/agent-setup.md" className="underline">{zh ? "接入指南 ↗" : "Setup guide ↗"}</a></p>
++        <p className="text-sm text-foreground/75 border-l-2 border-accent pl-5 mb-8">{zh ? "新用户请使用收到的内测包：Windows 原生安装器尚未公开发布。只有网站链接时，Agent 应先说明阻塞，不假装已经可安装。" : "New testers need the maintainer-provided bundle: the native Windows installer is not publicly released. If you only have the website, your agent should explain this blocker before attempting setup."} <a href="/docs/agent-setup.md" className="underline">{zh ? "接入指南 ↗" : "Setup guide ↗"}</a></p>
++        <div className="mb-10"><AgentSetupPrompt locale={locale} /></div>
++        <details className="mb-10 text-sm border border-hairline p-5 rounded-sm">
++          <summary className="cursor-pointer font-semibold">{zh ? "已经配置好 Mac？查看配对命令" : "Mac already configured? Show the pairing command"}</summary>
++          <code className="block font-mono my-4 select-all notranslate" translate="no">agent-road pair</code>
++          <p className="text-foreground/75">{zh ? "只在 CLI、账号授权和 Tailscale 已就绪，且你明确选择当前受限旧版 Alpha 时运行。首次用户先使用上方提示词和指南。" : "Run only with the CLI, account authorization and Tailscale ready, after explicitly choosing the current limited legacy Alpha. First-time users should start with the prompt and guide above."}</p>
++        </details>
+         <ol className="grid md:grid-cols-3 gap-8 mb-12">
+           {steps.map(([title, description], index) => <li key={title} className="border-t border-foreground/20 pt-5">
+             <span className="font-mono text-accent text-sm">0{index + 1}</span>
+--- a/src/app/components/Hero.tsx
++++ b/src/app/components/Hero.tsx
+@@ -1,16 +1,13 @@
+ "use client";
+ 
+-import { useEffect, useRef, useState } from "react";
++import { useEffect, useRef } from "react";
+ import { useTranslations, useLocale } from "next-intl";
+ import Link from "next/link";
+-import AgentSetupPrompt from "./AgentSetupPrompt";
+ 
+-const PAIR_COMMAND = "agent-road pair";
+ 
+ export default function Hero() {
+   const t = useTranslations("hero");
+   const locale = useLocale();
+-  const [copied, setCopied] = useState(false);
+   const videoRef = useRef<HTMLVideoElement>(null);
+ 
+   useEffect(() => {
+@@ -19,14 +16,8 @@
+     }
+   }, []);
+ 
+-  const handleCopy = () => {
+-    navigator.clipboard.writeText(PAIR_COMMAND);
+-    setCopied(true);
+-    setTimeout(() => setCopied(false), 1500);
+-  };
+-
+   return (
+-    <section className="relative min-h-[100dvh] flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-24 pb-16 overflow-hidden">
++    <section className="relative min-h-[80dvh] flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-24 pb-16 overflow-hidden">
+       {/* 水熊虫视频背景 */}
+       <div className="absolute inset-0 z-0 pointer-events-none">
+         <video
+@@ -39,12 +30,12 @@
+         >
+           <source src="/videos/tardigrade-loop.mp4" type="video/mp4" />
+         </video>
+-        <div className="absolute inset-0 bg-background/45" />
++        <div className="absolute inset-0 bg-background/65" />
+       </div>
+ 
+       <div className="relative z-10 max-w-7xl mx-auto w-full">
+         {/* 导航栏 */}
+-        <nav className="flex items-center justify-between mb-24">
++        <nav className="flex items-center justify-between mb-16">
+           <div className="text-sm font-mono tracking-widest uppercase text-foreground/60">
+             Agent Road
+           </div>
+@@ -76,7 +67,7 @@
+         <p className="font-mono text-xs tracking-widest uppercase text-accent mb-5">{locale === "zh" ? "免费 Alpha / Mac → Windows" : "Free Alpha / Mac → Windows"}</p>
+         {/* Headline */}
+         <div className="mb-8">
+-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]">
++          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]">
+             {t("title")}
+           </h1>
+         </div>
+@@ -87,58 +78,12 @@
+         </p>
+ 
+         <div className="flex flex-wrap gap-3 mb-5">
+-          <a href="#demo" className="bg-accent text-black font-semibold px-6 py-3 rounded-sm hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "观看 1 分钟演示 ↗" : "Watch the 1-minute demo ↗"}</a>
+-          <a href="#getting-started" className="border border-foreground/30 px-6 py-3 rounded-sm hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "看看如何开始" : "See how to get started"}</a>
++          <a href="#getting-started" className="bg-accent text-black font-semibold px-6 py-3 rounded-sm hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "让我的 Agent 开始配置 →" : "Set up with my agent →"}</a>
++          <a href="#demo" className="border border-foreground/30 px-6 py-3 rounded-sm hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "先看 1 分钟演示" : "Watch the 1-minute demo"}</a>
+         </div>
+-        <p className="text-xs text-foreground/60 mb-12">{locale === "zh" ? "双方确认接入 · 可管理 CLI 授权 · Windows 无需单独账号" : "Confirm on both devices · Manage CLI access · No separate Windows account"}</p>
+-        {/* 居中 CLI 命令 */}
+-        <div className="flex flex-col items-center gap-4 mb-16">
+-          <div className="relative inline-flex items-center bg-foreground text-background rounded-sm font-mono text-sm md:text-base px-6 py-4 md:px-8 md:py-5 notranslate" translate="no">
+-            <span className="text-accent mr-3">$</span>
+-            <code className="whitespace-nowrap">{PAIR_COMMAND}</code>
+-            <button
+-              onClick={handleCopy}
+-              className="ml-4 md:ml-6 p-1.5 rounded-sm hover:bg-background/10 transition-colors"
+-              title={t("copy")}
+-            >
+-              {copied ? (
+-                <svg
+-                  xmlns="http://www.w3.org/2000/svg"
+-                  width="16"
+-                  height="16"
+-                  viewBox="0 0 24 24"
+-                  fill="none"
+-                  stroke="currentColor"
+-                  strokeWidth="2"
+-                  strokeLinecap="round"
+-                  strokeLinejoin="round"
+-                >
+-                  <polyline points="20 6 9 17 4 12" />
+-                </svg>
+-              ) : (
+-                <svg
+-                  xmlns="http://www.w3.org/2000/svg"
+-                  width="16"
+-                  height="16"
+-                  viewBox="0 0 24 24"
+-                  fill="none"
+-                  stroke="currentColor"
+-                  strokeWidth="2"
+-                  strokeLinecap="round"
+-                  strokeLinejoin="round"
+-                >
+-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+-                </svg>
+-              )}
+-            </button>
+-          </div>
+-          <p className="text-sm text-foreground/60 text-center max-w-xl">{t("pairNote")}</p>
+-          <AgentSetupPrompt locale={locale} />
+-        </div>
+-
++        <p className="text-xs text-foreground/60 mb-12">{locale === "zh" ? "双方确认接入 · 可管理 CLI 授权 · Windows 主人无需另注册 Agent Road" : "Confirm on both devices · Manage CLI access · No separate Agent Road account on Windows"}</p>
+         {/* 底部 tagline */}
+-        <div className="mt-16 space-y-2">
++        <div className="mt-10 space-y-2">
+           <div className="flex items-center gap-4 text-sm text-foreground/60">
+             <div className="w-12 h-px bg-foreground/20" />
+             <span className="font-semibold">{t("tagline")}</span>
+--- /dev/null
++++ b/src/app/components/Overview.tsx
+@@ -0,0 +1,19 @@
++import { getLocale } from "next-intl/server";
++
++export default async function Overview() {
++  const zh = (await getLocale()) === "zh";
++  return <section aria-labelledby="overview-title" className="px-6 md:px-12 lg:px-24 py-16 border-y border-hairline bg-surface">
++    <div className="max-w-5xl mx-auto">
++      <p className="font-mono text-xs uppercase tracking-widest text-foreground/65 mb-4">{zh ? "30 秒看懂" : "The idea in 30 seconds"}</p>
++      <h2 id="overview-title" className="font-display text-3xl md:text-5xl font-bold mb-6">{zh ? "你在 Mac 上提要求。Windows 去完成任务。" : "Ask on your Mac. Get the work done on Windows."}</h2>
++      <p className="text-foreground/75 max-w-3xl leading-relaxed mb-10">{zh ? "Agent Road 是连接工具。你继续使用能运行终端命令的 AI Agent；它通过经过你授权的连接，把命令发到另一台电脑，再取回输出和文件。" : "Agent Road is the connection tool. Keep using an AI agent with terminal access: it sends commands to your other computer over a connection you authorize, then brings back the output and files."}</p>
++      <div className="grid md:grid-cols-[1fr_auto_1fr] gap-5 items-center mb-10">
++        <div className="border border-foreground/20 rounded-sm p-6"><p className="font-mono text-sm mb-3">01 / MAC</p><h3 className="font-semibold text-xl mb-2">{zh ? "你已有的 Agent" : "Your existing agent"}</h3><p className="text-foreground/75 text-sm">{zh ? "接收你的要求 · 检查环境 · 调用 CLI" : "Takes your request · checks the environment · calls the CLI"}</p></div>
++        <div className="text-center text-sm font-mono text-foreground/70"><span aria-hidden="true">↔</span><br />Tailscale + SSH</div>
++        <div className="border border-foreground/20 rounded-sm p-6"><p className="font-mono text-sm mb-3">02 / WINDOWS</p><h3 className="font-semibold text-xl mb-2">{zh ? "你授权的另一台电脑" : "Your other computer"}</h3><p className="text-foreground/75 text-sm">{zh ? "执行任务 · 返回结果 · 无需另跑模型" : "Runs the task · returns results · no second model required"}</p></div>
++      </div>
++      <blockquote className="border-l-2 border-accent pl-6 text-lg leading-relaxed">{zh ? "“检查我 Windows 项目的测试环境，经我同意运行测试，把结果带回来。”" : '“Check the test environment for my Windows project, run the tests with my approval, and bring back the results.”'}</blockquote>
++      <p className="mt-4 text-sm text-foreground/65">{zh ? "这是任务示例，并非一份实际执行记录。现有工具优先复用，安装和管理员变更由你批准。" : "An example request, not a live execution receipt. Existing tools are reused where suitable; you approve installation and administrator changes."}</p>
++    </div>
++  </section>;
++}
+--- a/src/app/components/Scenarios.tsx
++++ b/src/app/components/Scenarios.tsx
+@@ -1,128 +1,19 @@
+-"use client";
+-
+-import { useEffect, useRef } from "react";
+-import { gsap } from "gsap";
+-import { ScrollTrigger } from "gsap/ScrollTrigger";
+ import { useTranslations } from "next-intl";
+-import Image from "next/image";
+-import ShapeBlur from "./ShapeBlur";
+-
+-gsap.registerPlugin(ScrollTrigger);
+-
+-const SCENARIOS = [
+-  { key: "s1", img: "/images/scenario-1.png", variation: 0 },
+-  { key: "s2", img: "/images/scenario-2.png", variation: 1 },
+-  { key: "s3", img: "/images/scenario-3.png", variation: 3 },
+-];
+ 
+ export default function Scenarios() {
+   const t = useTranslations("scenarios");
+-  const sectionRef = useRef<HTMLElement>(null);
+-  const cardsRef = useRef<HTMLDivElement>(null);
+-
+-  useEffect(() => {
+-    const section = sectionRef.current;
+-    const cards = cardsRef.current;
+-    if (!section || !cards) return;
+-
+-    const items = cards.querySelectorAll(".scenario-card");
+-    gsap.fromTo(
+-      items,
+-      { opacity: 0, y: 40 },
+-      {
+-        opacity: 1,
+-        y: 0,
+-        stagger: 0.12,
+-        duration: 0.8,
+-        ease: "power2.out",
+-        scrollTrigger: {
+-          trigger: section,
+-          start: "top 70%",
+-        },
+-      }
+-    );
+-
+-    return () => {
+-      ScrollTrigger.getAll().forEach((t) => t.kill());
+-    };
+-  }, []);
+-
+-  return (
+-    <section
+-      ref={sectionRef}
+-      className="relative py-32 px-6 md:px-12 lg:px-24 overflow-hidden"
+-    >
+-      <div className="relative z-10 max-w-6xl mx-auto">
+-        {/* 标题 */}
+-        <div className="mb-16">
+-          <div className="text-xs font-mono uppercase tracking-widest text-foreground/40 mb-4">
+-            {t("label")}
+-          </div>
+-          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
+-            {t("title")}
+-          </h2>
+-          <p className="text-lg text-foreground/60 max-w-2xl">
+-            {t("description")}
+-          </p>
+-        </div>
+-
+-        {/* 场景卡片：s1 大图全宽，s2/s3 左右并排 */}
+-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+-          {SCENARIOS.map((s, i) => (
+-            <div
+-              key={s.key}
+-              className={`scenario-card group relative border border-hairline rounded-sm overflow-hidden transition-all duration-500 ${
+-                i === 0 ? "md:col-span-2" : ""
+-              }`}
+-            >
+-              {/* ShapeBlur 背景层 */}
+-              <div className="absolute inset-0 pointer-events-none opacity-[0.08] z-0">
+-                <ShapeBlur
+-                  variation={s.variation}
+-                  shapeSize={0.8}
+-                  roundness={0.5}
+-                  borderSize={0.05}
+-                  circleSize={0.4}
+-                  circleEdge={0.8}
+-                />
+-              </div>
+-
+-              <div className="relative z-10 flex flex-col">
+-                {/* 图片（原色，完整显示不裁剪） */}
+-                <div className={`relative w-full ${i === 0 ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
+-                  <Image
+-                    src={s.img}
+-                    alt={t(`${s.key}.tab`)}
+-                    fill
+-                    loading="eager"
+-                    className="object-contain"
+-                    sizes={i === 0 ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+-                  />
+-                </div>
+-
+-                {/* 文字 */}
+-                <div className="p-6 md:p-8 bg-background">
+-                  <div className="text-xs font-mono uppercase tracking-widest text-foreground/40 mb-2">
+-                    {t(`${s.key}.label`)}
+-                  </div>
+-                  <h3 className="font-display text-xl md:text-2xl font-bold tracking-tight mb-3">
+-                    {t(`${s.key}.title`)}
+-                  </h3>
+-                  <p className="text-sm text-foreground/60 leading-relaxed">
+-                    {t(`${s.key}.desc`)}
+-                  </p>
+-                </div>
+-              </div>
+-            </div>
+-          ))}
+-        </div>
+-
+-        {/* 底部提示 */}
+-        <div className="mt-12 flex items-center gap-4 text-sm text-foreground/40">
+-          <div className="w-12 h-px bg-foreground/20" />
+-          <span>{t("tagline")}</span>
+-        </div>
+-      </div>
+-    </section>
+-  );
++  return <section className="py-20 px-6 md:px-12 lg:px-24">
++    <div className="max-w-5xl mx-auto">
++      <p className="text-xs font-mono uppercase tracking-widest text-foreground/65 mb-4">{t("label")}</p>
++      <h2 className="font-display text-3xl md:text-5xl font-bold mb-5">{t("title")}</h2>
++      <p className="text-foreground/75 max-w-2xl mb-10">{t("description")}</p>
++      <ol>
++        {["s1", "s2", "s3"].map((key, i) => <li key={key} className="grid md:grid-cols-[3rem_1fr_1fr] gap-4 md:gap-8 py-7 border-t border-hairline">
++          <span className="font-mono text-foreground/65">0{i + 1}</span>
++          <h3 className="font-semibold text-xl">{t(`${key}.title`)}</h3>
++          <p className="text-foreground/75 leading-relaxed">{t(`${key}.desc`)}</p>
++        </li>)}
++      </ol>
++    </div>
++  </section>;
+ }
+--- a/src/app/components/VerifiedSection.tsx
++++ b/src/app/components/VerifiedSection.tsx
+@@ -43,7 +43,7 @@
+       ref={sectionRef}
+       className="relative py-32 px-6 md:px-12 lg:px-24 border-t border-hairline"
+     >
+-      <div ref={contentRef} className="max-w-4xl mx-auto opacity-0">
++      <div ref={contentRef} className="max-w-4xl mx-auto">
+         <div className="text-xs font-mono uppercase tracking-widest text-foreground/40 mb-6">
+           {t("label")}
+         </div>
+--- a/src/app/sitemap.ts
++++ b/src/app/sitemap.ts
+@@ -2,5 +2,8 @@
+ 
+ export default function sitemap(): MetadataRoute.Sitemap {
+   const origin = "https://agent-road.brahma-technologies.com";
+-  return ["/", "/zh"].map((path) => ({ url: `${origin}${path}` }));
++  return ["/", "/zh"].map((path) => ({
++    url: `${origin}${path}`,
++    alternates: { languages: { en: `${origin}/`, zh: `${origin}/zh`, "x-default": `${origin}/` } },
++  }));
+ }
+--- a/src/messages/en.json
++++ b/src/messages/en.json
+@@ -1,10 +1,7 @@
+ {
+   "hero": {
+-    "title": "Your Mac. Your Windows PC. One agent.",
+-    "subtitle": "Run commands, move files and work on Windows projects from your Mac. Keep your agent in one place and put your other computer to work.",
+-    "install": "brew install agent-road",
+-    "enroll": "agent-road enroll",
+-    "yolo": "/yolo anywhere",
++    "title": "Your Mac agent. Working on Windows.",
++    "subtitle": "Ask your existing AI agent to run commands, move files and start background jobs on your Windows PC. You authorize the connection. Windows does not need another model.",
+     "pairNote": "Run on a configured Mac to generate a Windows join command. Windows needs administrator approval, not a separate account. Sign in with agent-road login; first-time network setup is still required.",
+     "copy": "Copy",
+     "tagline": "Built for the moment your work needs the other machine.",
+@@ -17,27 +14,27 @@
+     "description": "Invite a Windows PC from a configured Mac with a short command. Windows needs internet access and administrator approval. Agent Road checks the environment and prepares the supported tools; first-time network setup is still required."
+   },
+   "scenarios": {
+-    "label": "Three Plays",
+-    "title": "One Agent, Three Plays",
+-    "description": "Run remote Windows tasks today. Broader platform support and multi-machine coordination are future directions.",
++    "label": "Useful today",
++    "title": "Give your other computer a useful task",
++    "description": "For an enrolled Windows PC that passes its capability checks. Inspect the environment first, then run the work you authorize.",
+     "tagline": "Start with a connected Windows PC. Expand from there.",
+     "s1": {
+-      "tab": "Remote PC Repair",
+-      "label": "Available in Alpha",
+-      "title": "Mac Agent Controls a Windows Dev Machine",
+-      "desc": "Run commands, transfer files and work on projects from your Mac on an enrolled Windows PC. Desktop and browser control depend on an available Windows session and the required components."
++      "tab": "Run Windows tests",
++      "label": "Enrolled devices / Alpha",
++      "title": "Run a project test. Bring back the result.",
++      "desc": "Have your agent inspect existing tools, run an approved test command and return its output and exit code."
+     },
+     "s2": {
+-      "tab": "Old Machines as Workers",
+-      "label": "Future direction",
+-      "title": "A Network of Spare Computers",
+-      "desc": "Today, you can run remote jobs on an enrolled Windows PC. Coordinated multi-machine workloads, NAS targets and Mac targets are future directions, not current Alpha features."
++      "tab": "Move files",
++      "label": "Enrolled devices / Alpha",
++      "title": "Send a script. Retrieve the report.",
++      "desc": "Transfer individual files with integrity checks. Overwriting is explicit; this is not a full directory sync."
+     },
+     "s3": {
+-      "tab": "Cross-Platform Dev",
+-      "label": "Future direction",
+-      "title": "Cross-Platform Development with One Agent",
+-      "desc": "Mac-to-Windows workflows are the current Alpha scope. Linux targets and a full Mac / Windows / Linux workflow are future directions; Linux deployment is not included today."
++      "tab": "Background jobs",
++      "label": "Enrolled devices / Alpha",
++      "title": "Leave a job running. Check back later.",
++      "desc": "Keep the job ID and use it to retrieve status and logs later. Jobs outlive the current SSH connection, but do not survive a reboot."
+     }
+   },
+   "trauma": {
+@@ -71,15 +68,42 @@
+     "title": "Connection and Recovery States",
+     "description": "Check which capabilities are available before starting a task. SSH connectivity does not imply a usable desktop; READY reflects the latest successful checks.",
+     "states": [
+-      { "code": "ENROLLING", "desc": "Enrollment in progress — prerequisites and setup are being checked" },
+-      { "code": "CONNECTED_SSH_ONLY", "desc": "SSH enrollment recorded; verify commands live and check desktop capability separately" },
+-      { "code": "GUI_LOGIN_REQUIRED", "desc": "The owner must log in locally on Windows; do not give the password to the agent" },
+-      { "code": "MCP_UNAVAILABLE", "desc": "Desktop control unavailable — check command and file capabilities separately" },
+-      { "code": "TAILSCALE_AUTH_REQUIRED", "desc": "Tailscale authentication required — reconnect and check capabilities afterward" },
+-      { "code": "DEGRADED_RECOVERY_AVAILABLE", "desc": "A recovery channel is available — repair still depends on the failure" },
+-      { "code": "REBOOT_RECOVERY_FAILED", "desc": "Reconnection after reboot failed — investigate; local intervention may be needed" },
+-      { "code": "SSH_VERIFY_FAILED", "desc": "SSH verification failed — inspect device identity and the error; keep verification enabled" },
+-      { "code": "READY", "desc": "The latest readiness check passed; verify the capabilities and check time needed for this task" }
++      {
++        "code": "ENROLLING",
++        "desc": "Enrollment in progress — prerequisites and setup are being checked"
++      },
++      {
++        "code": "CONNECTED_SSH_ONLY",
++        "desc": "SSH enrollment recorded; verify commands live and check desktop capability separately"
++      },
++      {
++        "code": "GUI_LOGIN_REQUIRED",
++        "desc": "The owner must log in locally on Windows; do not give the password to the agent"
++      },
++      {
++        "code": "MCP_UNAVAILABLE",
++        "desc": "Desktop control unavailable — check command and file capabilities separately"
++      },
++      {
++        "code": "TAILSCALE_AUTH_REQUIRED",
++        "desc": "Tailscale authentication required — reconnect and check capabilities afterward"
++      },
++      {
++        "code": "DEGRADED_RECOVERY_AVAILABLE",
++        "desc": "A recovery channel is available — repair still depends on the failure"
++      },
++      {
++        "code": "REBOOT_RECOVERY_FAILED",
++        "desc": "Reconnection after reboot failed — investigate; local intervention may be needed"
++      },
++      {
++        "code": "SSH_VERIFY_FAILED",
++        "desc": "SSH verification failed — inspect device identity and the error; keep verification enabled"
++      },
++      {
++        "code": "READY",
++        "desc": "The latest readiness check passed; verify the capabilities and check time needed for this task"
++      }
+     ],
+     "tagline": "A successful check describes that moment. Recheck after a reboot, logout or network change."
+   },
+@@ -88,28 +112,20 @@
+     "title": "Boundaries, Not Promises",
+     "items": [
+       {
+-        "title": "Single-Use Token",
+-        "desc": "Enrollment tokens die in 10 minutes. One device, one shot, destroyed after."
++        "title": "Consent on both computers",
++        "desc": "Owners approve account access and pairing. One-use enrollment details are sensitive; do not share them publicly."
+       },
+       {
+-        "title": "No Long-Lived Secrets",
+-        "desc": "No credential worth stealing lives in commands, logs, or process output."
++        "title": "Private credentials stay with the controller",
++        "desc": "The controller stores device SSH keys. Protect its local state and redact logs before sharing."
+       },
+       {
+-        "title": "Fail-Closed",
+-        "desc": "Tailscale not running? Enrollment stops cold. No downgrade, no detour."
++        "title": "Verify the connection",
++        "desc": "Use Tailscale and host-key-pinned SSH. Required checks fail closed rather than silently reducing protections."
+       },
+       {
+-        "title": "Pinned Host Keys",
+-        "desc": "SSH host keys verified, then pinned. Man-in-the-middle gets refused on sight."
+-      },
+-      {
+-        "title": "No Model on Target",
+-        "desc": "Windows runs only lightweight control components. The model and the planning stay on your Mac."
+-      },
+-      {
+-        "title": "Dangerous Ops Ask First",
+-        "desc": "Bulk deletes, firewall changes, security software, external publishing — every one needs your explicit yes."
++        "title": "You authorize the task",
++        "desc": "Installations, reboots and security changes require explicit authorization. The CLI can run administrative scripts; it is not a sandbox for untrusted code."
+       }
+     ],
+     "notIncluded": {
+@@ -125,14 +141,26 @@
+   },
+   "verified": {
+     "label": "Physically Verified",
+-    "title": "Reboot reconnection. Transport checks. File checks. Network routing.",
++    "title": "Commands. File round trips. Background jobs.",
+     "titleAccent": "Results from tested setups.",
+-    "description": "Tests on configured Windows systems inform the Alpha. These results apply to the tested setups and conditions; they do not guarantee recovery on every device or after every failure.",
++    "description": "Internal physical-PC and VM trials cover these workflows. Claude and DeepSeek independently used the existing controller. One 24-hour observation recorded 95 successful samples, not an uptime guarantee. An earlier SSH service stop remains unexplained; fresh unfamiliar devices still need external testing.",
+     "items": [
+-      { "name": "Reboot Reconnection", "desc": "Reconnection checked after normal reboots in the test environment" },
+-      { "name": "Transport Recovery", "desc": "Transport reconnection checked under tested network conditions" },
+-      { "name": "Integrity Preservation", "desc": "Selected files and configuration checked for unintended changes" },
+-      { "name": "Network Isolation", "desc": "Routing checked with LAN access blocked in the test setup" }
++      {
++        "name": "Real commands",
++        "desc": "Check remote output and script exit code"
++      },
++      {
++        "name": "File round trips",
++        "desc": "Check Unicode content and integrity on enrolled devices"
++      },
++      {
++        "name": "Background jobs",
++        "desc": "Reuse the same job ID to retrieve terminal state and logs"
++      },
++      {
++        "name": "Independent agent use",
++        "desc": "Claude and DeepSeek used the existing controller in internal trials"
++      }
+     ]
+   },
+   "promo": {
+@@ -148,7 +176,7 @@
+   "pricing": {
+     "label": "Pricing",
+     "title": "Free During Alpha",
+-    "description": "Agent Road is in active development. Alpha is free. Pricing lands at beta.",
++    "description": "Free Alpha focused on Mac to Windows. New devices should follow their supplied test bundle.",
+     "badge": "Alpha — No payment required",
+     "back": "← Back to home"
+   },
+--- a/src/messages/zh.json
++++ b/src/messages/zh.json
+@@ -1,10 +1,7 @@
+ {
+   "hero": {
+-    "title": "Mac 上的 Agent，Windows 上的行动。",
+-    "subtitle": "从 Mac 运行远程命令、传输文件、处理 Windows 项目。让 Agent 留在熟悉的工作环境，把另一台电脑用起来。",
+-    "install": "brew install agent-road",
+-    "enroll": "agent-road enroll",
+-    "yolo": "/yolo anywhere",
++    "title": "让 Mac Agent 操作 Windows。",
++    "subtitle": "在 Mac 上提出要求，让已有的 AI Agent 到另一台 Windows 电脑运行命令、传输文件和处理后台任务。连接与变更由你授权，Windows 无需另跑模型。",
+     "pairNote": "在已配置的 Mac 上运行，生成 Windows 接入命令。Windows 需管理员确认，无需单独注册账号。控制端使用 agent-road login 登录；首次使用仍需配置网络环境。",
+     "copy": "复制",
+     "tagline": "当任务需要另一台电脑，让 Agent 接着做。",
+@@ -17,27 +14,27 @@
+     "description": "从已配置的 Mac 发起邀请，Windows 粘贴短命令接入。Windows 需联网并由管理员确认；Agent Road 检查环境、准备受支持的工具，首次使用仍需配置网络。"
+   },
+   "scenarios": {
+-    "label": "三种打法",
+-    "title": "一个 Agent，三种打法",
+-    "description": "当前可运行远程 Windows 任务；更多目标平台和多机协作属于未来方向。",
++    "label": "现在能做的事",
++    "title": "从一个真实任务开始",
++    "description": "以下任务适用于已接入并通过能力检查的 Windows。先检查已有环境，再运行你授权的工作。",
+     "tagline": "先连接一台 Windows，再逐步扩展。",
+     "s1": {
+-      "tab": "远程修电脑",
+-      "label": "Alpha 已支持",
+-      "title": "Mac 控制 Windows 开发机",
+-      "desc": "从 Mac 在已接入的 Windows 上运行命令、传输文件和处理项目。桌面与浏览器操作还需要可用的 Windows 登录会话及相应组件。"
++      "tab": "运行 Windows 测试",
++      "label": "已接入设备 / Alpha",
++      "title": "运行项目测试，拿回结果",
++      "desc": "让 Agent 检查已有工具，运行你批准的测试命令，并返回输出和退出码。"
+     },
+     "s2": {
+-      "tab": "旧机变算力",
+-      "label": "未来方向",
+-      "title": "让闲置电脑协同工作",
+-      "desc": "当前可以在已接入的 Windows 上运行远程任务。多机统一调度、NAS 目标端和 Mac 目标端属于未来方向，并非 Alpha 已有功能。"
++      "tab": "传输文件",
++      "label": "已接入设备 / Alpha",
++      "title": "把脚本送过去，把报告带回来",
++      "desc": "传输单个文件并核对完整性。已有文件的覆盖需要明确指定；这不是完整目录同步。"
+     },
+     "s3": {
+-      "tab": "跨平台开发",
+-      "label": "未来方向",
+-      "title": "一个 Agent 打通 Mac / Windows / Linux",
+-      "desc": "当前 Alpha 支持 Mac → Windows。Linux 目标端和完整的 Mac / Windows / Linux 工作流属于未来方向，目前不包含 Linux 部署。"
++      "tab": "后台任务",
++      "label": "已接入设备 / Alpha",
++      "title": "任务继续运行，稍后再取结果",
++      "desc": "保存任务 ID，用同一 ID 查询状态和日志。任务可独立于当前 SSH 连接运行，但不支持跨重启继续。"
+     }
+   },
+   "trauma": {
+@@ -71,15 +68,42 @@
+     "title": "连接与恢复状态",
+     "description": "开始任务前，先确认哪些能力可用。SSH 连通不代表桌面可操作；READY 表示最近一次能力检查通过。",
+     "states": [
+-      { "code": "ENROLLING", "desc": "接入中——正在检查前提条件和配置" },
+-      { "code": "CONNECTED_SSH_ONLY", "desc": "已登记 SSH 接入；命令需实时验证，桌面能力需单独检查" },
+-      { "code": "GUI_LOGIN_REQUIRED", "desc": "需要设备主人在 Windows 本机登录桌面；不要把密码交给 Agent" },
+-      { "code": "MCP_UNAVAILABLE", "desc": "桌面控制不可用——命令和文件能力需单独确认" },
+-      { "code": "TAILSCALE_AUTH_REQUIRED", "desc": "需要 Tailscale 认证——重新连接后还需检查能力" },
+-      { "code": "DEGRADED_RECOVERY_AVAILABLE", "desc": "有可用恢复通道——能否修复仍取决于故障" },
+-      { "code": "REBOOT_RECOVERY_FAILED", "desc": "重启后回连失败——需要排查，可能需本机介入" },
+-      { "code": "SSH_VERIFY_FAILED", "desc": "SSH 验证失败——检查原设备身份与错误，不跳过校验" },
+-      { "code": "READY", "desc": "最近一次就绪检查通过；本次任务仍需核对实际能力与检查时间" }
++      {
++        "code": "ENROLLING",
++        "desc": "接入中——正在检查前提条件和配置"
++      },
++      {
++        "code": "CONNECTED_SSH_ONLY",
++        "desc": "已登记 SSH 接入；命令需实时验证，桌面能力需单独检查"
++      },
++      {
++        "code": "GUI_LOGIN_REQUIRED",
++        "desc": "需要设备主人在 Windows 本机登录桌面；不要把密码交给 Agent"
++      },
++      {
++        "code": "MCP_UNAVAILABLE",
++        "desc": "桌面控制不可用——命令和文件能力需单独确认"
++      },
++      {
++        "code": "TAILSCALE_AUTH_REQUIRED",
++        "desc": "需要 Tailscale 认证——重新连接后还需检查能力"
++      },
++      {
++        "code": "DEGRADED_RECOVERY_AVAILABLE",
++        "desc": "有可用恢复通道——能否修复仍取决于故障"
++      },
++      {
++        "code": "REBOOT_RECOVERY_FAILED",
++        "desc": "重启后回连失败——需要排查，可能需本机介入"
++      },
++      {
++        "code": "SSH_VERIFY_FAILED",
++        "desc": "SSH 验证失败——检查原设备身份与错误，不跳过校验"
++      },
++      {
++        "code": "READY",
++        "desc": "最近一次就绪检查通过；本次任务仍需核对实际能力与检查时间"
++      }
+     ],
+     "tagline": "检查结果只代表当时状态；重启、退出登录或网络变化后，需要重新确认。"
+   },
+@@ -88,28 +112,20 @@
+     "title": "边界，不是承诺",
+     "items": [
+       {
+-        "title": "一次性令牌",
+-        "desc": "接入令牌 10 分钟过期。一台设备，一次机会，用完即毁。"
++        "title": "双方知情确认",
++        "desc": "由主人授权账号与配对。一次性接入信息属于敏感信息，不要公开分享。"
+       },
+       {
+-        "title": "不留长期密钥",
+-        "desc": "命令、日志、进程输出里，找不到任何能长期用的凭证。"
++        "title": "私人凭据留在控制端",
++        "desc": "控制端保存设备 SSH 密钥。保管好本机状态，分享日志前先脱敏。"
+       },
+       {
+-        "title": "失败即关闭",
+-        "desc": "Tailscale 没在跑，接入立刻停。没有降级，没有绕行。"
++        "title": "验证连接身份",
++        "desc": "通过 Tailscale 和固定主机密钥的 SSH 连接。无法通过必要检查时停止，不自动降低要求。"
+       },
+       {
+-        "title": "钉死主机密钥",
+-        "desc": "SSH 主机密钥验证后钉死。中间人来了，直接拒。"
+-      },
+-      {
+-        "title": "目标端不跑模型",
+-        "desc": "Windows 只跑轻量控制组件。模型和计划永远留在你的 Mac 上。"
+-      },
+-      {
+-        "title": "危险操作必问",
+-        "desc": "批量删除、改防火墙、动安全软件、对外发布——每一个都要你点头。"
++        "title": "任务由你授权",
++        "desc": "安装、重启和安全设置变更需要明确授权。CLI 能执行管理员脚本，不是运行不可信代码的沙箱。"
+       }
+     ],
+     "notIncluded": {
+@@ -125,14 +141,26 @@
+   },
+   "verified": {
+     "label": "物理验证",
+-    "title": "重启回连。传输检查。文件核查。网络路由。",
++    "title": "命令、文件往返、后台任务。",
+     "titleAccent": "来自已测试环境的结果。",
+-    "description": "Alpha 的验证来自已配置的 Windows 测试环境。结果仅适用于测试过的配置和条件，不代表所有设备、所有故障都能自动恢复。",
++    "description": "内部真机与 VM 完成过这些检查，Claude 和 DeepSeek 也独立使用现有控制器完成任务。一轮 24 小时观察有 95 次正常采样，不等于持续在线保证。此前 SSH 停服根因仍未查明，陌生设备首次接入还需要外部测试。",
+     "items": [
+-      { "name": "重启回连", "desc": "在测试环境中检查正常重启后的回连" },
+-      { "name": "传输恢复", "desc": "在指定网络条件下检查传输重连" },
+-      { "name": "完整性保护", "desc": "核查选定文件与配置是否发生意外变更" },
+-      { "name": "网络隔离", "desc": "在测试环境中阻断 LAN 访问并检查路由" }
++      {
++        "name": "真实命令",
++        "desc": "核对远端输出和退出码"
++      },
++      {
++        "name": "文件往返",
++        "desc": "在已接入设备检查 Unicode 内容与完整性"
++      },
++      {
++        "name": "后台任务",
++        "desc": "保留同一任务 ID，查询终态和日志"
++      },
++      {
++        "name": "独立 Agent 使用",
++        "desc": "Claude 与 DeepSeek 调用既有控制器完成内部验收"
++      }
+     ]
+   },
+   "promo": {
+@@ -148,7 +176,7 @@
+   "pricing": {
+     "label": "定价",
+     "title": "Alpha 期间免费",
+-    "description": "Agent Road 正在全力开发。Alpha 免费，Beta 公布定价。",
++    "description": "免费 Alpha，目前重点验证 Mac → Windows。新设备请按内测包说明接入。",
+     "badge": "Alpha — 无需付费",
+     "back": "← 返回首页"
+   },

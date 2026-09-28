@@ -44,5 +44,5 @@ The private source is not a promise to run a hosted service for every user. Repo
 - `npm run check`: passed.
 - Python acceptance regression: 22 tests passed.
 - Gitleaks 8.30.1 source scan: zero detections; private raw reports kept outside this repository. No claim that regex scanning proves absence of all secrets.
-- `npm test`: full regression started; completion must be recorded before the public release gate can pass.
+- `npm test`: 1,596 tests; 1,577 passed, 19 skipped, zero failures (797.3 seconds). Skipped checks do not establish Windows acceptance.
 - Historical Markdown retains intentional double-space line breaks; staged whitespace validation excludes end-of-line spaces.

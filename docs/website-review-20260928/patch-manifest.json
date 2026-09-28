@@ -1,0 +1,62 @@
+[
+  {
+    "path": "src/app/[locale]/page.tsx",
+    "beforeSha256": "c46cf0eddc415b38632abe05818a4d589d1b9cf13a9db8dc0a3a92d7fee10731",
+    "afterSha256": "b5c18670cc57dcbf9d2959d5508145d26f6c8caa5d4a046a55d904110db57715"
+  },
+  {
+    "path": "src/app/[locale]/pricing/page.tsx",
+    "beforeSha256": "1a122f85775ea7947712dc800e299d18ed8273a61612b608839da3150b25dc8e",
+    "afterSha256": "5678f75166e31ec51b66f9ea7a211f5c505f6af86ad5e32e9a679b947dac4de6"
+  },
+  {
+    "path": "src/app/components/BeginnerFAQ.tsx",
+    "beforeSha256": null,
+    "afterSha256": "0d74a37dbadad12f9d2e32ab8e5313d5084fdd80b00bdc432b9cf501ebfbebf3"
+  },
+  {
+    "path": "src/app/components/Footer.tsx",
+    "beforeSha256": "091a37f9101ee150108860341025c32b8365fdd563d363ac410093c58d0d2570",
+    "afterSha256": "50506eceee7b62d2119b2e2dfa9c14bf4c80620410646c75b44454e13a1fdb1c"
+  },
+  {
+    "path": "src/app/components/GettingStarted.tsx",
+    "beforeSha256": "033b02d8e4fbd70d9721f47ab37924ebdf29c2514a338518c7589ed555a56110",
+    "afterSha256": "0bd588b49569da84fef4fc824ad561f5b3e3f70cfc0f2226e8fa5da0a5efdcaa"
+  },
+  {
+    "path": "src/app/components/Hero.tsx",
+    "beforeSha256": "7744d17b34a602452d7b2e435b668d1675578122a938954697c42e2390884241",
+    "afterSha256": "ba3445c5502610edd0e08de68895047abb8a70f2abe106b3fd59d2e6afc8aaa6"
+  },
+  {
+    "path": "src/app/components/Overview.tsx",
+    "beforeSha256": null,
+    "afterSha256": "75de073f134ab3a7b76968ef7f9ad3b5f8390b560ffe1ade032be490d6d7ceed"
+  },
+  {
+    "path": "src/app/components/Scenarios.tsx",
+    "beforeSha256": "b248590865e256a807c7c8f06a7ba916edf51f80a24b4071654af8ecb6225f89",
+    "afterSha256": "4c3a929384a727ed030edb0adda1f4b390c84bb6eb38b083d6e6969b4505a614"
+  },
+  {
+    "path": "src/app/components/VerifiedSection.tsx",
+    "beforeSha256": "ccff19a0299b1471aace044b95daf5accf10a282fcc35d525d8d9279a1c902f3",
+    "afterSha256": "d90a06d28c851242db9e00430a013b0fe6b46fb1660213239dc74d20b7c19837"
+  },
+  {
+    "path": "src/app/sitemap.ts",
+    "beforeSha256": "84a19370ee0c9e3960dc00104d1ddb9d8a149f02b1c60f373403a2ec5b3f30a1",
+    "afterSha256": "9a9c889b3c0905845e437329befaf81059b2da89ab3faa234107b563c681fd9a"
+  },
+  {
+    "path": "src/messages/en.json",
+    "beforeSha256": "215e80971802c0a06bd73def319ebd8452e596accdf72139771ad9ef2f349d6d",
+    "afterSha256": "b98c85b8603a52bf959f1aab37ccd60b7794c111934840f9791c95d9fc2afaf4"
+  },
+  {
+    "path": "src/messages/zh.json",
+    "beforeSha256": "f869f9eae2ad8cf34476c6492f3f76023ff29467777ce719d234b61f091374c3",
+    "afterSha256": "48fe3cdce95a0a989ab95044fee7f9ec277a465211c30830e15ad849fcd8015c"
+  }
+]
