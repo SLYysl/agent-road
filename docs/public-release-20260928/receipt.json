@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/SLYysl/agent-road",
+  "visibility": "public",
+  "license": "Apache-2.0",
+  "privateVulnerabilityReporting": true,
+  "installerReleasePublished": false,
+  "anonymousChecks": [
+    {
+      "url": "https://github.com/SLYysl/agent-road",
+      "status": 200,
+      "bytes": 323322
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SLYysl/agent-road/main/README.md",
+      "status": 200,
+      "bytes": 7599
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SLYysl/agent-road/main/LICENSE",
+      "status": 200,
+      "bytes": 11358
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SLYysl/agent-road/main/docs/assets/mac-lifebuoy.png",
+      "status": 200,
+      "bytes": 1592286
+    }
+  ]
+}

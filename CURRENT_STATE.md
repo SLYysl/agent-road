@@ -1,9 +1,9 @@
 # CURRENT_STATE — Public Alpha source release
 Updated: 2026-09-28
-- Repository: SLYysl/agent-road, main; user authorized public source release.
+- Repository: SLYysl/agent-road, main; PUBLIC source release verified; user authorized publication.
 - Scope: experimental Alpha source under Apache-2.0; installers remain private review/inner-test artifacts.
 - README EN/ZH, contribution guidance and license scope updated for source publication.
-- Security contact: syin31437@gmail.com; GitHub private reporting to be enabled and verified after visibility change.
+- Security contact: syin31437@gmail.com; GitHub private reporting enabled and read back successfully.
 - User confirmed presentation media is self-generated with no external assets; Mac lifebuoy retained, media separate from code license.
 - Third-party terms remain separate; no Tailscale GUI/hosted-service redistribution grant claimed.
 - Final Gitleaks history scan: 9 prior commits, zero detections; final tree scan follows doc changes.
@@ -11,4 +11,5 @@ Updated: 2026-09-28
 - Historical native binary source match/notice review: docs/release-notices-20260928/.
 - New controller archive licensing verification: docs/license-review-20260928/.
 - No public binary release, Windows operations, website deploy or hosted signup expansion in this task.
-- Next: verify public visibility, anonymous access, Apache detection and private security reporting.
+- Verified anonymous HTTP 200 for repository, README, LICENSE and Mac lifebuoy; GitHub detects Apache-2.0.
+- Next: collect external Alpha feedback and finish native installer delivery/acceptance independently.
