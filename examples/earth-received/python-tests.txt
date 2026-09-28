@@ -1,0 +1,8 @@
+test_aggregation (__main__.Checks.test_aggregation) ... ok
+test_empty (__main__.Checks.test_empty) ... ok
+test_reject_negative (__main__.Checks.test_reject_negative) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

@@ -1,0 +1,24 @@
+{
+  "observedDate": "2026-09-19",
+  "fixture": {
+    "path": "index.html",
+    "sha256": "f20ce10c66a84a68099285e9b52a8a0a0d873daec1a7cd098194ed9519e9679b"
+  },
+  "baseline": {
+    "skillsLoaded": false,
+    "cliJavaScriptExecuted": true,
+    "guiInput": "Win32 mouse at UI Automation bounds",
+    "completed": true,
+    "trustedMouseEvents": 2
+  },
+  "skillPhase": {
+    "skill": "playwright",
+    "package": "@playwright/cli",
+    "version": "0.1.21",
+    "browser": "installed msedge headed",
+    "delivery": "Windows loopback HTTP",
+    "completed": true,
+    "trustedMouseEvents": 2
+  },
+  "scope": "Sequential functional smoke trial; not a controlled skill-effect or speed benchmark. Raw receipts are private."
+}

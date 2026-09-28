@@ -1,0 +1,38 @@
+{
+  "name": "agent-road-pairing",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-07-07",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": false
+  },
+  "rules": [
+    {
+      "type": "Text",
+      "globs": [
+        "**/*.ps1"
+      ],
+      "fallthrough": true
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "PAIRINGS",
+        "class_name": "PairingRegistry"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "PairingRegistry"
+      ]
+    }
+  ],
+  "vars": {
+    "PUBLIC_ORIGIN": "https://agent-road.brahma-technologies.com"
+  }
+}

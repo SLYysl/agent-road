@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><title>Agent Road Browser Baseline</title>
+<style>body{margin:0;background:#101827;color:#e5edf9;font:22px system-ui}main{max-width:850px;margin:90px auto;padding:45px;border:1px solid #34455e;border-radius:24px}small{color:#81dbc9}h1{font-size:44px}button{font-size:22px;padding:18px 26px;margin:20px 18px 20px 0;border:0;border-radius:10px;background:#90efcc;color:#122435}button:disabled{background:#3e5063;color:#9aaabd}#status{padding:20px;background:#26384c;border-radius:10px}#evidence{font:16px monospace}</style>
+<main><small>MAC → AGENT ROAD → WINDOWS EDGE</small><h1>Browser control trial</h1><p>Operator: Astra · Controlled local test page</p><button id="arm">Arm mission</button><button id="launch" disabled>Launch mission</button><p id="status" role="status">Ready for GUI input</p><p id="evidence">Trusted mouse clicks: 0</p></main>
+<script>
+let clicks=0;const arm=document.querySelector('#arm'),launch=document.querySelector('#launch'),status=document.querySelector('#status'),evidence=document.querySelector('#evidence');
+document.documentElement.dataset.cliReady='true';
+function record(e){if(e.isTrusted&&e.pointerType==='mouse')clicks++;evidence.textContent='Trusted mouse clicks: '+clicks;}
+arm.onclick=e=>{record(e);arm.disabled=true;launch.disabled=false;status.textContent='Armed. Ready to launch.';};
+launch.onclick=e=>{record(e);launch.disabled=true;status.textContent='Mission complete — Astra ✅';status.style.background='#175849';document.title='ROAD_DONE | Agent Road Browser Baseline';};
+</script>

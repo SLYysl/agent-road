@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { mkdtemp, mkdir, readFile, writeFile, copyFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import test from 'node:test';
+
+test('distribution requires tracked clean release inputs and packages the manifest release gate', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'agent-road-build-contract-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  for (const dir of ['tools/distribution', 'src', 'docs']) await mkdir(join(root, dir), { recursive: true });
+  for (const file of ['build.mjs', 'install.sh.in']) {
+    await copyFile(new URL(`../tools/distribution/${file}`, import.meta.url), join(root, 'tools/distribution', file));
+  }
+  await writeFile(join(root, 'src/cli.mjs'), 'export const fixture = true;\n');
+  await writeFile(join(root, 'package.json'), '{"type":"module"}\n');
+  await writeFile(join(root, 'docs/agent-setup.md'), 'fixture guide\n');
+  await writeFile(join(root, 'docs/agent-guide-zh.md'), '中文配置与使用指南\n');
+  const status = { schemaVersion: 1, windows: { nativeInstallerPublished: false } };
+  await writeFile(join(root, 'docs/onboarding-status.json'), JSON.stringify(status));
+  const git = (...args) => execFileSync('git', args, { cwd: root, stdio: 'pipe' });
+  git('init', '-q');
+  git('add', 'src', 'package.json', 'docs/agent-setup.md', 'docs/agent-guide-zh.md', 'tools');
+  git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'fixture');
+  const output = join(root, 'output');
+  const build = () => spawnSync(process.execPath, [join(root, 'tools/distribution/build.mjs'), output], { cwd: root, encoding: 'utf8' });
+  const untracked = build();
+  assert.notEqual(untracked.status, 0);
+  assert.match(untracked.stderr, /Tracked runtime or onboarding guide missing/);
+  git('add', 'docs/onboarding-status.json');
+  assert.notEqual(build().status, 0, 'staged release input must not be labelled as HEAD');
+  git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'track gate');
+  await writeFile(join(root, 'docs/agent-setup.md'), 'uncommitted guide\n');
+  assert.notEqual(build().status, 0, 'dirty release input must be refused');
+  git('restore', 'docs/agent-setup.md');
+  const installerPath = join(root, 'tools/distribution/install.sh.in');
+  const installer = await readFile(installerPath, 'utf8');
+  await writeFile(installerPath, installer + '\n# uncommitted installer change\n');
+  assert.notEqual(build().status, 0, 'installer template must also match the release revision');
+  git('restore', 'tools/distribution/install.sh.in');
+  const clean = build();
+  assert.equal(clean.status, 0, clean.stderr);
+  const manifest = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8'));
+  assert.deepEqual(manifest.onboarding, status);
+  assert.ok(manifest.files.includes('docs/onboarding-status.json'));
+  assert.ok(manifest.files.includes('docs/agent-guide-zh.md'));
+  const chineseGuide = execFileSync('tar', ['-xOf', join(output, manifest.archive), 'docs/agent-guide-zh.md']).toString('utf8');
+  assert.equal(chineseGuide, '中文配置与使用指南\n');
+  assert.equal(manifest.revision, git('rev-parse', 'HEAD').toString().trim());
+  const packed = execFileSync('tar', ['-xOf', join(output, manifest.archive), 'docs/onboarding-status.json']);
+  assert.deepEqual(JSON.parse(packed), status);
+});

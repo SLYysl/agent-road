@@ -1,0 +1,113 @@
+{
+  "date": "2026-09-19",
+  "baselineRevision": "a204be6",
+  "script": "[Console]::Write('AGENT_ROAD_LATENCY_OK')",
+  "independent": [
+    {
+      "index": 0,
+      "elapsedMs": 8585.81675,
+      "passed": true
+    },
+    {
+      "index": 1,
+      "elapsedMs": 10235.138125,
+      "passed": true
+    },
+    {
+      "index": 2,
+      "elapsedMs": 8512.575416,
+      "passed": true
+    },
+    {
+      "index": 3,
+      "elapsedMs": 8534.294458,
+      "passed": true
+    },
+    {
+      "index": 4,
+      "elapsedMs": 8791.077332999994,
+      "passed": true
+    },
+    {
+      "index": 5,
+      "elapsedMs": 8687.705208,
+      "passed": true
+    },
+    {
+      "index": 6,
+      "elapsedMs": 8562.500625,
+      "passed": true
+    },
+    {
+      "index": 7,
+      "elapsedMs": 8255.364333999998,
+      "passed": true
+    },
+    {
+      "index": 8,
+      "elapsedMs": 8651.627583000009,
+      "passed": true
+    },
+    {
+      "index": 9,
+      "elapsedMs": 8780.593834,
+      "passed": true
+    }
+  ],
+  "reused": [
+    {
+      "index": 0,
+      "exitCode": 0,
+      "elapsedMs": 5210.9755
+    },
+    {
+      "index": 1,
+      "exitCode": 0,
+      "elapsedMs": 4934.401500000001
+    },
+    {
+      "index": 2,
+      "exitCode": 0,
+      "elapsedMs": 5095.4439170000005
+    },
+    {
+      "index": 3,
+      "exitCode": 0,
+      "elapsedMs": 5056.351208
+    },
+    {
+      "index": 4,
+      "exitCode": 0,
+      "elapsedMs": 4835.512083000001
+    },
+    {
+      "index": 5,
+      "exitCode": 0,
+      "elapsedMs": 4919.047374999998
+    },
+    {
+      "index": 6,
+      "exitCode": 0,
+      "elapsedMs": 4717.487375000001
+    },
+    {
+      "index": 7,
+      "exitCode": 0,
+      "elapsedMs": 4907.388041999999
+    },
+    {
+      "index": 8,
+      "exitCode": 0,
+      "elapsedMs": 4772.226749999994
+    },
+    {
+      "index": 9,
+      "exitCode": 0,
+      "elapsedMs": 5064.995917
+    }
+  ],
+  "reusedBatchMs": 51116.316709,
+  "reusedOuterWallMs": 51179.864499999996,
+  "allOutputsExact": true,
+  "closed": true
+}

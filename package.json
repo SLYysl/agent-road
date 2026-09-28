@@ -1,0 +1,16 @@
+{
+  "name": "agent-road",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "agent-road": "./src/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "find src test -name '*.mjs' -print0 | xargs -0 -n1 node --check"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

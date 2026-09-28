@@ -1,0 +1,10 @@
+{
+  "records": 12,
+  "minutes": 112,
+  "categories": {
+    "Code": 42,
+    "Research": 30,
+    "Design": 40
+  },
+  "dataKind": "synthetic demo data"
+}

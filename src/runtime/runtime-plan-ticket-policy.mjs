@@ -1,0 +1,1 @@
+export const RUNTIME_PLAN_TICKET_TTL_MS = 10 * 60 * 1_000;

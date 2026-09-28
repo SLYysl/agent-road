@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-22",
+  "controller": {
+    "status": "AVAILABLE_ALPHA",
+    "platforms": [
+      "darwin-arm64",
+      "darwin-x64"
+    ],
+    "acceptedPlatforms": [
+      "darwin-arm64"
+    ]
+  },
+  "windows": {
+    "productionProtocol": 1,
+    "nativeProtocol": 2,
+    "nativeStatus": "DEVELOPMENT_VM_CORE_READY",
+    "nativeInstallerPublished": false,
+    "freshNativeOnboardingAccepted": false,
+    "knownBlockers": [
+      "REBOOT_RECOVERY_ACCEPTANCE_REQUIRED",
+      "PUBLIC_NATIVE_INSTALLER_DELIVERY_REQUIRED",
+      "TRUSTED_SIGNING_REQUIRED"
+    ],
+    "legacyStatus": "LIMITED_ALPHA",
+    "legacyKnownIssue": "Defender blocked bootstrap in isolated Windows trials; stop and retain evidence if detected.",
+    "developmentAcceptance": {
+      "scope": "One fresh Windows 11 VM, owner-authorized unsigned candidate",
+      "nativePairing": true,
+      "pinnedSsh": true,
+      "automaticCoreReady": true,
+      "utf8FileRoundtrip": true,
+      "automaticRebootRecovery": false,
+      "publicDownloadAccepted": false
+    }
+  },
+  "agentPolicy": {
+    "readGuideBeforeSetup": true,
+    "verifyManifestBeforeInstall": true,
+    "claimFullReadinessFromSshOnly": false,
+    "retryUncertainMutation": false,
+    "disableProtection": false
+  }
+}

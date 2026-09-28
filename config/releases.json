@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "tailscaleWindows": {
+    "version": "1.98.9",
+    "url": "https://pkgs.tailscale.com/stable/tailscale-setup-full-1.98.9.exe",
+    "sha256": "b3f7e15eb33b90f0686d6037453a0c680c3553b55deca649b56b6b05635c9e7b",
+    "authenticodeSubject": "CN=Tailscale Inc."
+  }
+}

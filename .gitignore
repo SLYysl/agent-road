@@ -1,0 +1,13 @@
+.worktrees/
+.wrangler/
+
+# Private state and generated artifacts
+.env
+.env.*
+!.env.example
+node_modules/
+.agent-road/
+*.pem
+*.key
+__pycache__/
+.DS_Store

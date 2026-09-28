@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<WindowsPerformanceRecorder Version="1.0" Author="Agent Road">
+  <Profiles>
+    <SystemCollector Id="DiskSystem" Name="AgentRoadDiskSystem">
+      <BufferSize Value="128"/>
+      <Buffers Value="64"/>
+      <MaximumFileSize Value="128" FileMode="Circular"/>
+    </SystemCollector>
+    <EventCollector Id="Events" Name="AgentRoadShutdownEvents">
+      <BufferSize Value="128"/>
+      <Buffers Value="64"/>
+      <MaximumFileSize Value="256" FileMode="Circular"/>
+    </EventCollector>
+    <SystemProvider Id="DiskProvider">
+      <Keywords>
+        <Keyword Value="DiskIO"/>
+        <Keyword Value="DiskIOInit"/>
+        <Keyword Value="FileIO"/>
+        <Keyword Value="FileIOInit"/>
+        <Keyword Value="ProcessThread"/>
+      </Keywords>
+    </SystemProvider>
+    <EventProvider Id="P0" Name="Microsoft-Windows-Services" Level="5">
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+    <EventProvider Id="P1" Name="Microsoft-Windows-WindowsUpdateClient" Level="5">
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+    <EventProvider Id="P2" Name="Microsoft-Windows-StorPort" Level="5">
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+    <EventProvider Id="P3" Name="Microsoft-Windows-StorDiag" Level="5">
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+    <EventProvider Id="P4" Name="Microsoft-Windows-Kernel-Power" Level="5">
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+    <EventProvider Id="P5" Name="Microsoft-Windows-Kernel-Disk" Level="5">
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+    <Profile Id="RoadShutdown.Verbose.File" Name="RoadShutdown" Description="Bounded service and storage shutdown diagnostic" LoggingMode="File" DetailLevel="Verbose">
+      <Collectors>
+        <SystemCollectorId Value="DiskSystem">
+          <SystemProviderId Value="DiskProvider"/>
+        </SystemCollectorId>
+        <EventCollectorId Value="Events">
+          <EventProviders>
+            <EventProviderId Value="P0"/>
+            <EventProviderId Value="P1"/>
+            <EventProviderId Value="P2"/>
+            <EventProviderId Value="P3"/>
+            <EventProviderId Value="P4"/>
+            <EventProviderId Value="P5"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+  </Profiles>
+</WindowsPerformanceRecorder>

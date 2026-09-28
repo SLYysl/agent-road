@@ -1,0 +1,79 @@
+#!/bin/sh
+# Parse the complete installer before running it when downloaded through a pipe.
+main() {
+set -eu
+umask 077
+fail() { printf '%s\n' "Agent Road: $*" >&2; exit 1; }
+[ "$(uname -s)" = Darwin ] || fail 'This installer supports macOS only.'
+[ "$(id -u)" != 0 ] || fail 'Run as your normal user, without sudo.'
+case "$(uname -m)" in
+  arm64) arch=arm64; node_sha=61130f394c1630d211dd50aecc4353d379480f36d3ac913cd85dbba1aed585c6 ;;
+  x86_64) arch=x64; node_sha=58e99022c2ff89395576cc7fd4d98cea24bb68081475d5f88b801ee8729fb026 ;;
+  *) fail 'Unsupported Mac architecture.' ;;
+esac
+prefix=${AGENT_ROAD_INSTALL_PREFIX:-"$HOME/.local"}
+case "$prefix" in /*) ;; *) fail 'Install prefix must be absolute.' ;; esac
+# Keep launcher quoting and shell profile instructions unambiguous.
+case "$prefix" in *\'*|*'
+'*) fail 'Install prefix contains an unsupported character.' ;; esac
+root="$prefix/share/agent-road"
+release='@RELEASE@'
+dest="$root/releases/$release"
+launcher="$prefix/bin/agent-road"
+for path in "$prefix" "$prefix/share" "$root" "$root/releases" "$prefix/bin"; do
+  [ ! -L "$path" ] || fail "Refusing symlink directory: $path"
+  if [ -e "$path" ]; then
+    [ -d "$path" ] && [ -O "$path" ] || fail "Unsafe directory: $path"
+    mode=$(stat -f '%Lp' "$path")
+    [ "$((0$mode & 022))" = 0 ] || fail "Directory is writable by other users: $path"
+  fi
+done
+mkdir -p "$root/releases" "$prefix/bin"
+[ ! -L "$launcher" ] || fail 'Existing agent-road symlink preserved; choose another install prefix.'
+if [ -e "$launcher" ]; then
+  [ -f "$launcher" ] && [ -O "$launcher" ] && grep -qx '# Agent Road managed launcher v1' "$launcher" || fail 'Existing unmanaged agent-road preserved.'
+fi
+mkdir "$root/install.lock" 2>/dev/null || fail 'Another installation is running (or install.lock needs inspection).'
+work=''
+cleanup() { [ -z "$work" ] || rm -rf "$work"; rmdir "$root/install.lock"; }
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+work=$(mktemp -d "$root/.install.XXXXXXXX")
+fetch() { curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --connect-timeout 20 --max-time 300 "$1" -o "$2"; }
+verify() { actual=$(shasum -a 256 "$1"); [ "${actual%% *}" = "$2" ] || fail 'Download checksum mismatch; existing installation unchanged.'; }
+if [ ! -e "$dest" ]; then
+  if [ -n "${AGENT_ROAD_ARCHIVE_FILE:-}" ]; then
+    case "$AGENT_ROAD_ARCHIVE_FILE" in /*) ;; *) fail 'Candidate archive must be an absolute path.' ;; esac
+    [ -f "$AGENT_ROAD_ARCHIVE_FILE" ] && [ ! -L "$AGENT_ROAD_ARCHIVE_FILE" ] && [ -O "$AGENT_ROAD_ARCHIVE_FILE" ] || fail 'Unsafe candidate archive.'
+    cp "$AGENT_ROAD_ARCHIVE_FILE" "$work/app.tgz"
+  else
+    fetch '@ORIGIN@/downloads/@ARCHIVE@' "$work/app.tgz"
+  fi
+  verify "$work/app.tgz" '@SHA256@'
+  fetch "https://nodejs.org/dist/v22.23.2/node-v22.23.2-darwin-$arch.tar.gz" "$work/node.tgz"
+  verify "$work/node.tgz" "$node_sha"
+  mkdir "$work/release"
+  tar -xzf "$work/app.tgz" -C "$work/release"
+  mkdir "$work/release/node"
+  tar -xzf "$work/node.tgz" -C "$work/release/node" --strip-components=1
+  "$work/release/node/bin/node" "$work/release/src/cli.mjs" --help >/dev/null
+  mv "$work/release" "$dest"
+fi
+[ ! -L "$dest" ] && [ -d "$dest" ] && [ -O "$dest" ] || fail 'Unsafe existing release.'
+"$dest/node/bin/node" "$dest/src/cli.mjs" --help >/dev/null
+printf '%s\n' '#!/bin/sh' '# Agent Road managed launcher v1' "exec '$dest/node/bin/node' '$dest/src/cli.mjs' \"\$@\"" > "$work/launcher"
+chmod 700 "$work/launcher"
+mv -f "$work/launcher" "$launcher"
+printf '\nInstalled: %s\n' "$launcher"
+case ":$PATH:" in *":$prefix/bin:"*) ;; *)
+  printf 'For this terminal, run: export PATH="%s/bin:$PATH"\n' "$prefix"
+  if [ -z "${AGENT_ROAD_INSTALL_PREFIX:-}" ]; then
+    printf '%s\n' 'Optionally add that line to ~/.zshrc for future terminals.'
+  else
+    printf '%s\n' 'Custom install prefix: use the absolute launcher or temporary PATH; no shell profile change is needed.'
+  fi
+;; esac
+printf '%s\n' 'Next: agent-road login' 'Pairing also needs your own Tailscale configuration; installation does not enroll a device.'
+}
+main "$@"

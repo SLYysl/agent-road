@@ -1,0 +1,1090 @@
+{
+  "baseline": {
+    "summary": {
+      "n": 10,
+      "failures": 0,
+      "meanMs": 9933.986596,
+      "medianMs": 9810.366938,
+      "p50NearestRankMs": 9788.838334,
+      "p95NearestRankMs": 10531.963791000002,
+      "minMs": 9565.537833999995,
+      "maxMs": 10531.963791000002
+    },
+    "runs": [
+      {
+        "n": 0,
+        "totalMs": 9769.070000000002,
+        "targetMs": 21.135709,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 4.191832999999988,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1417.565417,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1431.5802079999999,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 437.30150000000003,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1568.7697920000005,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1924.462125,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1436.3844170000011,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1459.2470000000012,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 1,
+        "totalMs": 9698.488041999999,
+        "targetMs": 21.572124999998778,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 6.734042000000045,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1335.710333000001,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1443.358291999999,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 461.53633400000035,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1534.0592500000002,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1865.9213750000017,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1525.5809999999983,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1438.1569170000002,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 2,
+        "totalMs": 10043.213542000001,
+        "targetMs": 20.55300000000352,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 8.029458000000886,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1577.5720000000001,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1431.150207999999,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 454.6613750000033,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1566.2143330000035,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1889.4620840000025,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1497.1132499999985,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1529.426333000003,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 3,
+        "totalMs": 10076.148750000004,
+        "targetMs": 20.448333000000275,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 8.326833999999508,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1365.4317499999997,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1539.6907090000022,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 460.6393750000025,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1481.5837079999983,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1948.6538750000036,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1698.1688749999958,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1487.3922500000044,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 4,
+        "totalMs": 9709.430166999999,
+        "targetMs": 21.544291999998677,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 7.679583000004641,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1349.9030000000057,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1533.1859580000018,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 464.66799999999785,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1498.5407500000001,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1864.7701250000027,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1437.4847079999963,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1464.1491249999963,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 5,
+        "totalMs": 9565.537833999995,
+        "targetMs": 21.828499999995984,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 8.533750000002328,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1313.641416999999,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1454.949542000002,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 452.7045419999995,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1481.5557909999989,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1872.3708750000005,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1490.0647920000047,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1403.871500000001,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 6,
+        "totalMs": 10531.963791000002,
+        "targetMs": 20.80829100000119,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 8.77062499999738,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1303.8297080000048,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1975.6653339999975,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 490.7609589999993,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1561.2417919999934,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 2013.2612920000029,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1506.9416669999919,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1582.4084580000053,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 7,
+        "totalMs": 10325.279958,
+        "targetMs": 20.622790999987046,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 8.847207999991952,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1320.499542000005,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1436.3234169999923,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 486.379666000008,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1794.151417000001,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1934.4609169999894,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1560.630124999996,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1698.2469999999885,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 8,
+        "totalMs": 9831.895541999998,
+        "targetMs": 21.413958999997703,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 8.924499999993714,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1418.7512080000015,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1414.528250000003,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 548.0351250000094,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1616.9022499999992,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1870.6570829999982,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1434.1573340000032,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1428.78624999999,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 9,
+        "totalMs": 9788.838334,
+        "targetMs": 20.22595900000306,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 8.008792000007816,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1308.2322089999943,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1475.4010830000043,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 455.26129100000253,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1510.0531250000058,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1878.6208329999936,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1559.8206669999927,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1505.1699579999986,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_CLEANED"
+          }
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "optimized": {
+    "summary": {
+      "n": 10,
+      "failures": 0,
+      "meanMs": 8549.4863707,
+      "medianMs": 8447.922770500001,
+      "p50NearestRankMs": 8439.803041,
+      "p95NearestRankMs": 9224.102417000002,
+      "minMs": 8087.750749999999,
+      "maxMs": 9224.102417000002
+    },
+    "runs": [
+      {
+        "n": 0,
+        "totalMs": 8717.001250000001,
+        "targetMs": 22.208083000000002,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 3.932083999999989,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1372.981625,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1453.737916,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 463.0025840000003,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1632.1994169999998,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1880.561667,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1818.4426669999993,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 1,
+        "totalMs": 8805.620083000002,
+        "targetMs": 25.031208000000333,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 7.332707999999911,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1468.5132920000015,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1458.9507080000003,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 481.7944580000003,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1815.6122919999998,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1876.7423330000001,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1606.0567090000004,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 2,
+        "totalMs": 8819.684583000002,
+        "targetMs": 21.029458000000886,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 7.998917000000802,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1467.6899159999994,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1504.5207910000026,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 466.3004579999979,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1521.484375,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1826.9882919999982,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1912.4445000000014,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 3,
+        "totalMs": 8439.803041,
+        "targetMs": 32.865208000002895,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 3.4347080000006827,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1508.0673339999994,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1510.1356670000023,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 442.78029199999946,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1518.2451250000013,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1839.4099590000005,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1444.7203330000048,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 4,
+        "totalMs": 8087.750749999999,
+        "targetMs": 16.89912500000355,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 3.9689160000052652,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1278.1147500000006,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1373.526874999996,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 435.606749999999,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1499.1406669999997,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1890.9951250000013,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1521.0610000000015,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 5,
+        "totalMs": 9224.102417000002,
+        "targetMs": 12.957416999997804,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 4.023375000004307,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1614.9188330000034,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1558.5507090000028,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 471.3947499999995,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1831.0152080000043,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1949.7065000000002,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1712.9047920000012,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 6,
+        "totalMs": 8456.042500000003,
+        "targetMs": 12.348832999996375,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 3.3474159999968833,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1374.9413749999949,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1476.3375000000015,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 538.3954589999994,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1561.1974160000027,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1880.2974170000016,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1559.963416999999,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 7,
+        "totalMs": 8336.138291000003,
+        "targetMs": 12.54558299999917,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 3.1953749999956926,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1329.043583999999,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1488.8608750000058,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 462.658958,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1560.9985830000005,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1922.5848330000008,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1509.1644170000072,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 8,
+        "totalMs": 8267.809209,
+        "targetMs": 14.730292000007466,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 3.1705409999995027,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1276.1838330000028,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1442.5405000000028,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 501.6797910000023,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1548.9630830000096,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1821.4323330000043,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1609.396166999999,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "n": 9,
+        "totalMs": 8340.911582999994,
+        "targetMs": 12.533916000000318,
+        "steps": [
+          {
+            "command": "ssh-keygen",
+            "ms": 3.0740000000078,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1308.5316659999953,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_ADMINISTRATOR_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1447.0587919999962,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_PREFLIGHT_OK"
+          },
+          {
+            "command": "scp",
+            "ms": 422.97375000000466,
+            "exitCode": 0,
+            "marker": null
+          },
+          {
+            "command": "ssh",
+            "ms": 1594.0975830000098,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_EXEC_VERIFIED"
+          },
+          {
+            "command": "ssh",
+            "ms": 1916.7797500000015,
+            "exitCode": 0,
+            "marker": "AGENT_ROAD_LATENCY_OK"
+          },
+          {
+            "command": "ssh",
+            "ms": 1585.5970830000006,
+            "exitCode": 0,
+            "marker": null
+          }
+        ],
+        "passed": true
+      }
+    ]
+  }
+}
