@@ -1,6 +1,6 @@
 # Open-source preparation / 开源准备
 
-This repository is a **private Alpha release candidate**, original code is now licensed under Apache-2.0, but it has not been published as an open-source release.
+This repository publishes **experimental Alpha source under Apache-2.0**. Public source, prebuilt installers and hosted-service access are separate release scopes.
 
 ## Included and excluded
 
@@ -20,31 +20,31 @@ Use the [license release decision checklist](docs/LICENSE_RELEASE_CHECKLIST.md) 
 
 See [third-party review inventory](THIRD_PARTY_REVIEW.md) for the initial component checklist.
 
-## Public release gates
+## Source publication and remaining delivery work
 
 - [x] Independent source snapshot; no private development history.
 - [x] Exclude raw experiment directory and historical packaged binaries.
 - [x] Initial Gitleaks 8.30.1 scan: no detections (text/source scan, not a security audit).
 - [x] Select Apache-2.0 for original code; add LICENSE, NOTICE and explicit scope.
-- [ ] Confirm contributor/source provenance and excluded media rights before whole-repository publication.
+- [x] Maintainer authorized source publication and confirmed the displayed media is self-generated without external assets; artwork remains separate from the code license.
 - [x] Inventory identified source/runtime/website dependencies and separate upstream/service/asset terms.
 - [ ] Validate notices and provenance of each exact redistributed binary; historical tester archives remain pending.
 - [ ] Review remaining documentation, example identifiers, hosted URLs and broken historical evidence links; replace old README onboarding claims with one supported public path.
 - [ ] Validate hosted pairing ownership isolation, revocation, expiry, rate limits and operating scope before inviting unrestricted public use.
 - [ ] Complete fresh external two-machine trials with user-owned accounts, using the distributed prompt and package.
 - [ ] Publish reproducible installer build instructions, hashes and signing status before distributing a release asset.
-- [ ] Configure a private vulnerability reporting channel and verify it before changing repository visibility.
-- [ ] User explicitly approves public visibility/release after final diff and credential/privacy review.
+- [x] Publish the maintainer-approved private security contact in SECURITY.md; no response SLA or inbox-delivery test is claimed.
+- [x] User explicitly authorized public Alpha source release; final source/history credential review performed.
 
 ## Tester feedback / 测试反馈
 
 请记录控制端和目标端系统版本、使用的 Agent、候选版本、失败阶段、脱敏错误码、是否需要人工介入，以及是否发生意外重复任务。不要上传 token、配对命令、密钥、账号资料、原始控制器状态或未经审查的日志。先诊断现有环境；安装、重启和变更安全策略必须明确说明并获得设备所有者授权。结果不明的写操作不得盲目重试。
 
-The private source is not a promise to run a hosted service for every user. Repository publication, installer distribution and hosted-service availability are separate decisions.
+The public source is not a promise to run a hosted service for every user. Repository publication, installer distribution and hosted-service availability are separate decisions.
 
 ## Candidate validation (2026-09-28)
 
-- 277 implementation/test/tool/service/example/config files are byte-identical to the source snapshot; changes are preparation documentation and repository hygiene.
+- At initial export, 277 implementation/test/tool/service/example/config files matched the source snapshot. Later commits add licensing, notices and packaging checks; see Git history.
 - `npm run check`: passed.
 - Python acceptance regression: 22 tests passed.
 - Gitleaks 8.30.1 source scan: zero detections; private raw reports kept outside this repository. No claim that regex scanning proves absence of all secrets.

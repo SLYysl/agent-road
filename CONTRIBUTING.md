@@ -1,6 +1,6 @@
 # Contributing
 
-This private snapshot is being prepared for open source. External contributions are not being solicited until licensing and publication gates in OPEN_SOURCE_PREPARATION.md are resolved.
+Agent Road is an experimental open-source Alpha. Redacted bug reports, documentation corrections and small, scoped pull requests are welcome. Discuss substantial changes in an issue first. By submitting original contributions for inclusion, you offer them under the project Apache-2.0 license; disclose third-party sources and retain their notices. See OPEN_SOURCE_PREPARATION.md for current limitations.
 
 Local development requires Node.js 22 or newer. Run `npm test` and `npm run check`. Acceptance helpers under tools/acceptance also use Python 3. Tests do not substitute for Windows hardware or fresh onboarding acceptance.
 

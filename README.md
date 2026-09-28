@@ -8,7 +8,7 @@ Run a Windows command, move a file, or start a background task without moving yo
 
 [中文说明](README.zh-CN.md) · [Website & demo](https://agent-road.brahma-technologies.com/) · [Setup guide](docs/agent-setup.md) · [Command reference](docs/agent-interface.md)
 
-> **Free Alpha · Mac → Windows.** This is a private open-source preparation snapshot. Original code is licensed under Apache-2.0; public release is pending, and the native Windows installer is not publicly released. Existing enrolled devices can be used; fresh testers need the maintainer-provided bundle and its instructions.
+> **Free Alpha · Mac → Windows.** Source code is available under Apache-2.0. This is an experimental Alpha; the native Windows installer is not publicly released. Existing enrolled devices can be used; fresh testers need the maintainer-provided bundle and its instructions.
 
 ## What can I do with it?
 
@@ -98,7 +98,7 @@ An earlier SSH service stop still has no confirmed root cause. Fresh unfamiliar 
 
 **Can it fix an offline or unbootable PC?** No. Remote work requires a functioning authorized network channel. BIOS, BitLocker pre-boot prompts, hardware failures and fully unreachable machines need local intervention.
 
-**Is it open source yet?** Not yet. This candidate is being prepared for release. Original code now uses [Apache-2.0](LICENSE); media and external components retain separate terms. [Publication gates](OPEN_SOURCE_PREPARATION.md) remain open.
+**Is it open source?** Yes. Original code uses [Apache-2.0](LICENSE); media and external components retain separate terms. Source availability does not mean a stable installer or unrestricted hosted-service access. See [release status](OPEN_SOURCE_PREPARATION.md).
 
 </details>
 

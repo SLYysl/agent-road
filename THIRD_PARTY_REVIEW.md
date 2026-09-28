@@ -37,7 +37,7 @@ The complete website checkout and its node_modules are not part of this controll
 | caniuse-lite | CC-BY-4.0 in lock metadata | Preserve applicable attribution for redistributed data; not a project-wide code license. |
 | Cabinet Grotesk | [Official family page](https://www.fontshare.com/fonts/cabinet-grotesk), read in browser: Closed Source / ITF Free Font License | Own-site self-hosting is permitted under that license; distributing font files through a repository is restricted. Keep existing appearance, but exclude the font files from a public source/asset release unless separately cleared. |
 | Inter Tight / Geist Mono | [Inter Tight OFL](https://github.com/google/fonts/blob/main/ofl/intertight/OFL.txt), [Geist Mono OFL](https://github.com/google/fonts/blob/main/ofl/geistmono/OFL.txt) | Keep SIL OFL notices with distributed font files and check actual versions. |
-| Mac lifebuoy image, other illustrations, video, voice/audio | Exact provenance and reuse permissions not established in this audit | Excluded from project code license. Preserve current private/website files; publication of asset copies remains a gate. |
+| Mac lifebuoy image, other illustrations, video, voice/audio | Maintainer confirmed self-generated media without external assets; no separate reuse license granted | Excluded from project code license. Retain the project illustration; website video/audio are not part of this source distribution. |
 
 Metadata alone is not a complete license audit: it can omit per-file exceptions, vendored code and generated output. Do not publish node_modules, compiled website bundles, third-party installers or media under one blanket Apache label.
 
@@ -47,4 +47,4 @@ Metadata alone is not a complete license audit: it can omit per-file exceptions,
 - Native build output copies these files beside the executable. Execution on Windows still needs its own build verification.
 - The historical tester-kit builder pins old `59e025e` / build11 artifacts. This review does not rewrite those archives or retroactively establish their notices. Regenerate and inspect a new kit before public binary distribution.
 - Preserve exact upstream notices in downloaded runtime archives. A source-license lookup alone does not complete an exact-binary SBOM or redistribution review.
-- Confirm original-source ownership and media provenance before making the entire repository public. No external contributor was shown in this snapshot's Git authors, but an exported snapshot cannot prove complete provenance.
+- The maintainer authorized publishing this source and retained illustration. No external contributor was shown in this snapshot's Git authors; this is not an independent legal audit. Historical review records describe their state at the time and may predate publication.
