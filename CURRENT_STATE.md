@@ -11,4 +11,5 @@ Updated: 2026-09-28
 - Site patch, before/after hashes and assessment: docs/website-review-20260928/.
 - Private raw audit: agent-road-private/readme-seo-20260928 (no credentials included in repository).
 - No Windows actions, installer release, account changes or public visibility change.
+- User visual preference: retain the classic Mac on the red/white lifebuoy; now displayed in the overview.
 - Next: finalize public release/license gates, select deployable site baseline and collect unfamiliar-user feedback.

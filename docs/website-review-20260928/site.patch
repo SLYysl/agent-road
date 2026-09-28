@@ -338,7 +338,8 @@
              <span className="font-semibold">{t("tagline")}</span>
 --- /dev/null
 +++ b/src/app/components/Overview.tsx
-@@ -0,0 +1,19 @@
+@@ -0,0 +1,25 @@
++import Image from "next/image";
 +import { getLocale } from "next-intl/server";
 +
 +export default async function Overview() {
@@ -353,8 +354,13 @@
 +        <div className="text-center text-sm font-mono text-foreground/70"><span aria-hidden="true">↔</span><br />Tailscale + SSH</div>
 +        <div className="border border-foreground/20 rounded-sm p-6"><p className="font-mono text-sm mb-3">02 / WINDOWS</p><h3 className="font-semibold text-xl mb-2">{zh ? "你授权的另一台电脑" : "Your other computer"}</h3><p className="text-foreground/75 text-sm">{zh ? "执行任务 · 返回结果 · 无需另跑模型" : "Runs the task · returns results · no second model required"}</p></div>
 +      </div>
++      <div className="grid md:grid-cols-[1fr_20rem] gap-8 items-center">
++        <div>
 +      <blockquote className="border-l-2 border-accent pl-6 text-lg leading-relaxed">{zh ? "“检查我 Windows 项目的测试环境，经我同意运行测试，把结果带回来。”" : '“Check the test environment for my Windows project, run the tests with my approval, and bring back the results.”'}</blockquote>
 +      <p className="mt-4 text-sm text-foreground/65">{zh ? "这是任务示例，并非一份实际执行记录。现有工具优先复用，安装和管理员变更由你批准。" : "An example request, not a live execution receipt. Existing tools are reused where suitable; you approve installation and administrator changes."}</p>
++        </div>
++        <Image src="/images/rescue-wheel.png" alt={zh ? "坐在红白救生圈上的经典 Mac 电脑" : "A classic Mac sitting in a red and white lifebuoy"} width={1024} height={1024} sizes="(max-width: 767px) 85vw, 320px" className="w-full max-w-80 justify-self-center rounded-sm object-contain" />
++      </div>
 +    </div>
 +  </section>;
 +}

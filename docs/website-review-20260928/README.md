@@ -6,7 +6,7 @@ Status: README changes prepared for the private SLYysl repository; website chang
 
 The live site already had descriptive bilingual metadata, canonical links, language alternatives, a sitemap and sign-in noindex. The old missing-metadata audit no longer described the live site. Current work is content clarity and consistency, not a claim of fixing every historical SEO issue again.
 
-The existing light background, muted green accent, display typography and tardigrade film were retained. The main issue was information order: a pairing command for a configured Mac dominated the first screen; future scenarios, recovery branding and internal state labels competed with first-use instructions. Some text claimed no valuable long-lived credentials and full desktop/browser readiness, despite SSH-only scope.
+The existing light background, muted green accent, display typography and tardigrade film were retained. At the user’s request, the classic Mac-on-lifebuoy illustration is also retained beside the example request in the overview, responsive on mobile and desktop. The main issue was information order: a pairing command for a configured Mac dominated the first screen; future scenarios, recovery branding and internal state labels competed with first-use instructions. Some text claimed no valuable long-lived credentials and full desktop/browser readiness, despite SSH-only scope.
 
 Changes:
 - One function-oriented headline and a primary setup CTA, with the demo as a secondary action.

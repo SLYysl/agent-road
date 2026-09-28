@@ -32,7 +32,7 @@
   {
     "path": "src/app/components/Overview.tsx",
     "beforeSha256": null,
-    "afterSha256": "75de073f134ab3a7b76968ef7f9ad3b5f8390b560ffe1ade032be490d6d7ceed"
+    "afterSha256": "47b6e0e588fd4df3f6e2d90b2d04c43513cd65cb7a81980fb90912efbf0fb754"
   },
   {
     "path": "src/app/components/Scenarios.tsx",
