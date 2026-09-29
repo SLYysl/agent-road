@@ -1,0 +1,17 @@
+[
+  {
+    "path": "src/app/components/Footer.tsx",
+    "beforeSha256": "7e6753c9daca2514bd558b501487ea7151304f2370dcaa45b42819a9903802db",
+    "afterSha256": "369ece16b6f6dd47cf19d77a7a6ea0b4888f3158227dbb82af1c7d3152aa3b1c"
+  },
+  {
+    "path": "src/app/components/BeginnerFAQ.tsx",
+    "beforeSha256": "60ab096acc2e284942a676a53dd0ec81ccac3cc47d2215f79ade9db59f06db77",
+    "afterSha256": "9b662f2f2e95863a67c9da6af8fa172474852d6243fcc47a2212275aa15e2a5e"
+  },
+  {
+    "path": "src/app/components/Hero.tsx",
+    "beforeSha256": "7576d1db01fad23ceccea64014eb6d138f849b5dbb74946dd30518e0d1edf6a8",
+    "afterSha256": "6208246bd34c1e61a22ddc6a5bba15a4eb44febfa8e707a3e5dff00fa12859dd"
+  }
+]

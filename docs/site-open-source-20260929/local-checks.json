@@ -1,0 +1,29 @@
+{
+  "base": "http://localhost:3131",
+  "checks": [
+    {
+      "route": "/",
+      "status": 200
+    },
+    {
+      "route": "/zh",
+      "status": 200
+    },
+    {
+      "route": "/pricing",
+      "status": 200
+    },
+    {
+      "route": "/zh/pricing",
+      "status": 200
+    },
+    {
+      "route": "/en/auth/signin",
+      "status": 200
+    },
+    {
+      "route": "/zh/auth/signin",
+      "status": 200
+    }
+  ]
+}

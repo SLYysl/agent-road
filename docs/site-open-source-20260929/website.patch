@@ -1,0 +1,49 @@
+--- a/src/app/components/Footer.tsx
++++ b/src/app/components/Footer.tsx
+@@ -12,7 +12,7 @@
+           {t("project")}
+         </div>
+         <div className="flex flex-wrap justify-center items-center gap-5">
+-          <span className="text-sm text-foreground/65">{zh ? "开源准备中" : "Open-source release in preparation"}</span>
++          <a href="https://github.com/SLYysl/agent-road" className="text-sm text-foreground/65 hover:text-foreground transition-colors">{zh ? "GitHub · Apache-2.0 开源" : "GitHub · Apache-2.0 open source"}</a>
+           <a
+             href={zh ? "/docs/agent-guide-zh.md" : "/docs/agent-setup.md"}
+             className="text-sm text-foreground/40 hover:text-foreground transition-colors"
+--- a/src/app/components/BeginnerFAQ.tsx
++++ b/src/app/components/BeginnerFAQ.tsx
+@@ -7,14 +7,14 @@
+     ["Windows 也需要装模型或注册账号吗？", "不需要在 Windows 上另跑模型或另注册网站账号，但接入会创建专用 Windows 本地管理员账号。Mac 控制端需要浏览器账号授权；Windows 主人需要确认接入并批准管理员变更。网络配置是单独的步骤。"],
+     ["它和远程桌面有什么区别？", "当前验证的核心是命令、文件和后台任务。鼠标、桌面和浏览器操作需要额外组件与可用会话，不能从“已连接”推断它们都可用。"],
+     ["现在支持哪两台电脑？", "重点测试 Apple Silicon Mac 控制 Windows 11 x64，网络使用 Tailscale。Mac 目标端、Linux 目标端及任意双机组合尚不在当前支持范围。"],
+-    ["现在能直接下载安装吗？开源了吗？", "已接入设备可以继续使用。新用户请先通过首页邮箱申请内测包，人工确认后按包内说明操作：Windows 原生安装器尚未公开发布。源码正在准备开源，仓库和许可证尚未公开就绪。"],
++    ["现在能直接下载安装吗？开源了吗？", "已接入设备可以继续使用。新用户请先通过首页邮箱申请内测包，人工确认后按包内说明操作：Windows 原生安装器尚未公开发布。自有源码已在 GitHub 以 Apache-2.0 公开；公开源码不等于正式安装器或无限制托管服务。"],
+     ["电脑断网或开不了机也能修吗？", "不能保证。远程诊断需要仍可用的授权通道。完全不可达、BIOS、BitLocker 开机前及硬件问题，需要有人在电脑旁处理。"],
+   ] : [
+     ["Is this another AI agent?", "No. It gives an existing terminal-capable agent remote tools. You keep using your agent; compatibility must be checked for the one you use."],
+     ["Does Windows need a model or another account?", "No second model or website account is needed on Windows, but setup creates a dedicated Windows local administrator account. The Mac controller uses browser account authorization; the Windows owner confirms pairing and administrator changes. Network setup is a separate step."],
+     ["How is this different from remote desktop?", "The validated core is commands, files and background jobs. Mouse, desktop and browser workflows need additional components and a usable session; a connected status does not prove those capabilities."],
+     ["Which computers are supported today?", "The test focus is an Apple Silicon Mac controlling Windows 11 x64 over Tailscale. Mac targets, Linux targets and arbitrary two-computer combinations are outside the current supported scope."],
+-    ["Can I install it now? Is it open source?", "Already enrolled devices can be used. New testers should request a bundle through the homepage email and follow its instructions after maintainer confirmation: the native Windows installer is not publicly released. Source publication and licensing are still being prepared."],
++    ["Can I install it now? Is it open source?", "Already enrolled devices can be used. New testers should request a bundle through the homepage email and follow its instructions after maintainer confirmation: the native Windows installer is not publicly released. Original source is public on GitHub under Apache-2.0. Public source does not mean a stable installer or unrestricted hosted-service access."],
+     ["Can it repair a PC that is offline or cannot boot?", "Remote diagnosis needs a working authorized channel. Fully unreachable systems, BIOS, BitLocker pre-boot prompts and hardware faults require local intervention."],
+   ];
+   return <section id="faq" className="px-6 md:px-12 lg:px-24 py-20 border-t border-hairline"><div className="max-w-4xl mx-auto">
+--- a/src/app/components/Hero.tsx
++++ b/src/app/components/Hero.tsx
+@@ -64,7 +64,7 @@
+           </div>
+         </nav>
+ 
+-        <p className="font-mono text-xs tracking-widest uppercase text-accent mb-5">{locale === "zh" ? "免费 Alpha / Mac → Windows" : "Free Alpha / Mac → Windows"}</p>
++        <p className="font-mono text-xs tracking-widest uppercase text-accent mb-5">{locale === "zh" ? "免费开源 Alpha / Mac → Windows" : "Free open-source Alpha / Mac → Windows"}</p>
+         {/* Headline */}
+         <div className="mb-8">
+           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]">
+@@ -79,6 +79,7 @@
+ 
+         <div className="flex flex-wrap gap-3 mb-5">
+           <a href="#request-access" className="bg-accent text-black font-semibold px-6 py-3 rounded-sm hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "申请免费内测包 →" : "Request Alpha access →"}</a>
++          <a href="https://github.com/SLYysl/agent-road" className="border border-foreground/30 px-6 py-3 rounded-sm hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "GitHub 源码 ↗" : "Source on GitHub ↗"}</a>
+           <a href="#demo" className="border border-foreground/30 px-6 py-3 rounded-sm hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-offset-4">{locale === "zh" ? "先看 1 分钟演示" : "Watch the 1-minute demo"}</a>
+         </div>
+         <p className="text-xs text-foreground/60 mb-12">{locale === "zh" ? "双方确认接入 · 可管理 CLI 授权 · Windows 会创建专用管理员账号" : "Confirm on both devices · Manage CLI access · Dedicated Windows administrator account"}</p>
