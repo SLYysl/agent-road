@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { access, readFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 
 const scriptUrl = new URL('../windows/bootstrap-stage-one.ps1', import.meta.url);
 
@@ -812,8 +813,9 @@ test('stage one is syntactically valid when PowerShell is available', async (t) 
   await access(scriptUrl);
   const result = spawnSync(pwsh, [
     '-NoProfile', '-Command',
-    '$t=$null;$e=$null; [System.Management.Automation.Language.Parser]::ParseFile($args[0],[ref]$t,[ref]$e)>$null; if($e.Count){$e|Out-String|Write-Error;exit 1}',
-    scriptUrl.pathname,
-  ], { encoding: 'utf8' });
+    // With -Command, trailing arguments are joined into the command text and never
+    // reach $args, so the path travels in the environment.
+    '$t=$null;$e=$null; [System.Management.Automation.Language.Parser]::ParseFile($env:AGENT_ROAD_PARSE_TARGET,[ref]$t,[ref]$e)>$null; if($e.Count){$e|Out-String|Write-Error;exit 1}',
+  ], { encoding: 'utf8', env: { ...process.env, AGENT_ROAD_PARSE_TARGET: fileURLToPath(scriptUrl) } });
   assert.equal(result.status, 0, result.stderr);
 });
