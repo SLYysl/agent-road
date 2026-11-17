@@ -81,6 +81,18 @@ Success means the remote output contains `Hello from Windows` and the script exi
 
 </details>
 
+## Install the agent skill
+
+The repository ships a skill that teaches an agent which command fits which task and how to read the results. Copy it into your agent's skill folder and tell it where this checkout is:
+
+```sh
+cp -R skills/agent-road ~/.claude/skills/        # Claude Code
+cp -R skills/agent-road ~/.codex/skills/         # Codex
+export AGENT_ROAD_ROOT="$(pwd)"                  # add to your shell profile
+```
+
+The skill only covers work on a device that is already enrolled. It never pairs a device or installs tools by itself.
+
 ## What has been tested?
 
 Internal physical-PC and VM trials cover commands, Unicode file round trips and durable jobs. Claude and DeepSeek independently used the existing controller to complete task checks. One 24-hour observation recorded 95 successful scheduled samples plus a successful closing probe; this is sampled evidence, not an uptime guarantee.

@@ -45,6 +45,18 @@ Mac：你 + 已有 Agent → Agent Road → Tailscale + SSH → Windows：执行
 
 已经接入过？继续使用原控制器状态，先 `list` 和 `status`，不要重新配对。具体命令见 [English README](README.md) 和[命令契约](docs/agent-interface.md)。
 
+## 安装 agent skill
+
+仓库自带一个 skill,告诉 agent 什么任务用哪条命令、结果怎么读。把它复制到 agent 的 skill 目录,并告诉它这个仓库在哪:
+
+```sh
+cp -R skills/agent-road ~/.claude/skills/        # Claude Code
+cp -R skills/agent-road ~/.codex/skills/         # Codex
+export AGENT_ROAD_ROOT="$(pwd)"                  # 写进 shell 配置
+```
+
+这个 skill 只管在已注册设备上干活,不会自己配对设备或安装工具。
+
 ## 它不是什么
 
 它不替代 Claude Code、Codex 或其他 Agent，也不保证鼠标、桌面和浏览器控制。当前支持范围不包括 Mac 目标端或 Linux 目标端。完全断网、无法启动、BIOS 或 BitLocker 开机前问题，需要本地处理。
