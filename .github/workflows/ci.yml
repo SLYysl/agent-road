@@ -10,12 +10,10 @@ permissions:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    # The controller's durable state store supports macOS only; on Linux it refuses
+    # with RUNTIME_STATE_UNSUPPORTED, so the suite is run where the controller runs.
+    runs-on: macos-latest
     timeout-minutes: 60
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
